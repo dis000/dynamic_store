@@ -18,7 +18,7 @@ public class ProductFeature {
     @Column(name = "id")
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "musor")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "productFeature")
     private Set<ValueCharacteristic> valueCharacteristic;
 
     @Column(name = "name")

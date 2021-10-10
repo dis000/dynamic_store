@@ -32,6 +32,6 @@ public class Product {
     @NotNull
     private String type;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "value")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "product")
     private Set<ValueCharacteristic> valueCharacteristic;
 }

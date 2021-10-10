@@ -20,8 +20,10 @@ public class ValueCharacteristic {
     private String value;
 
 
+
     @ManyToOne(fetch = FetchType.EAGER)
     private Product product;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     private ProductFeature productFeature;
