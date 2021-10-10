@@ -12,25 +12,26 @@ import java.util.Set;
 @Entity
 @Setter
 @Getter
+@Table
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column("id")
+    @Column(name = "id")
     private Long id;
 
-    @Column("name")
+    @Column(name = "name")
     @NonNull
     private String name;
 
-    @Column("price")
+    @Column(name = "price")
     @NotNull
     private Integer price;
 
-    @Column("type")
+    @Column(name = "type")
     @NotNull
     private String type;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "value")
     private Set<ValueCharacteristic> valueCharacteristic;
 }

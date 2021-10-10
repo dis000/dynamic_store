@@ -10,17 +10,22 @@ import java.util.Set;
 @Entity
 @Setter
 @Getter
+@Table
 public class ProductFeature {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column("id")
+    @Column(name = "id")
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "musor")
     private Set<ValueCharacteristic> valueCharacteristic;
 
-    @Column("name")
+    @Column(name = "name")
     @NotNull
     private String name;
+
+
+
+
 }
