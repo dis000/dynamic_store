@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductTypeRepository extends JpaRepository<ProductType, Long> {
+    //TODO или это
     ProductType findAllByNameCategory(String category);
 }

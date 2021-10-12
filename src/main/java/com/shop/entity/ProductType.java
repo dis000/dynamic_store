@@ -3,6 +3,7 @@ package com.shop.entity;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -27,5 +28,11 @@ public class ProductType {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "productType")
     private Set<ProductFeature> productFeatures;
 
-
+    @Override
+    public String toString() {
+        return "ProductType{" +
+                "id=" + id +
+                ", nameCategory='" + nameCategory + '\'' +
+                '}';
+    }
 }

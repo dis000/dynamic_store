@@ -2,6 +2,7 @@ package com.shop.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -28,5 +29,11 @@ public class ValueProductFeature {
     @ManyToOne(fetch = FetchType.EAGER)
     private ProductFeature productFeature;
 
-
+    @Override
+    public String toString() {
+        return "ValueProductFeature{" +
+                "id=" + id +
+                ", value='" + value + '\'' +
+                '}';
+    }
 }
