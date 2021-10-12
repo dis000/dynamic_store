@@ -19,7 +19,7 @@ public class ProductFeature {
     private Long id;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "productFeature")
-    private Set<ValueCharacteristic> valueCharacteristic;
+    private Set<ValueProductCharacteristic> valueProductCharacteristic;
 
     @Column(name = "name")
     @NotNull

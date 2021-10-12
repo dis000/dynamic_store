@@ -20,7 +20,7 @@ public class ProductService implements IProductService {
 
 
         System.out.println("полный");
-        productRepository.findById(1L).get().getValueCharacteristic().forEach(valueCharacteristic -> System.out.println(valueCharacteristic.getValue()));
+        productRepository.findById(1L).get().getValueProductCharacteristic().forEach(valueCharacteristic -> System.out.println(valueCharacteristic.getValue()));
     }
 
 }
