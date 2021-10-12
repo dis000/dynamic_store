@@ -14,7 +14,6 @@ public class TestController {
 
     @GetMapping
     public String get(){
-       productService.get();
        return "kek";
     }
 

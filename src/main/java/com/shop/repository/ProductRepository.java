@@ -12,5 +12,5 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
       List<Product> findByValueProductCharacteristicIn(Iterable<ValueProductCharacteristic> valueCharacteristics);
 
-      Product findByProductTypeOrderByName(Product productType);
+  //    Product findByProductTypeOrderByName(Product productType);
 }

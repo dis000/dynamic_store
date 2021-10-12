@@ -25,6 +25,8 @@ public class ProductFeature {
     @NotNull
     private String name;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private ProductType productType;
 
 
 

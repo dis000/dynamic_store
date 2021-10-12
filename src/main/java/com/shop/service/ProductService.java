@@ -26,7 +26,8 @@ public class ProductService implements IProductService {
        productRepository.findById(1L).get().getValueProductCharacteristic().forEach(valueCharacteristic -> System.out.println(valueCharacteristic.getValue()));
 
         */
-        return productRepository.findByProductTypeOrderByName(product);
+   //     return productRepository.findByProductTypeOrderByName(product);
+        return null;
     }
 
     @Override

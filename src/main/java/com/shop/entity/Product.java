@@ -29,10 +29,9 @@ public class Product {
     private Integer price;
 
 
-    @Column(name = "type")
     @NotNull
     @ManyToOne
-    private Product productType;
+    private Product productCategory;
 
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "product")
