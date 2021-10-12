@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -32,17 +33,17 @@ public class ProductService implements IProductService {
 
     @Override
     public List<Product> getAll() {
-        return null;
+        return productRepository.findAll();
     }
 
     @Override
     public Product create(Product obj) {
-        return null;
+        return productRepository.save(obj);
     }
 
     @Override
-    public Product getByUuid(UUID uuid) {
-        return null;
+    public Optional<Product> getByUuid(Long id) {
+        return productRepository.findById(id);
     }
 
 }
