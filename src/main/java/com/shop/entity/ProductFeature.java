@@ -8,6 +8,10 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.util.Set;
 
+
+/**
+ * Характеристика продукта
+ */
 @Entity
 @Setter
 @Getter
