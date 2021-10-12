@@ -35,5 +35,5 @@ public class Product {
 
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "product")
-    private Set<ValueProductCharacteristic> valueProductCharacteristic;
+    private Set<ValueProductFeature> valueProductFeature;
 }

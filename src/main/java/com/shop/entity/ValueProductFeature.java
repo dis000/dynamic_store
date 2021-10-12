@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table
-public class ValueProductCharacteristic {
+public class ValueProductFeature {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
