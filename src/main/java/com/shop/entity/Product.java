@@ -27,13 +27,13 @@ public class Product {
     @Column(name = "price")
     @NotNull
     private Integer price;
-/*
+
 
     @Column(name = "type")
     @NotNull
     @ManyToOne
     private Product productType;
-*/
+
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "product")
     private Set<ValueProductCharacteristic> valueProductCharacteristic;
