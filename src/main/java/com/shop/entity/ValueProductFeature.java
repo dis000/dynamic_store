@@ -6,6 +6,9 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
+/**
+ * Конкретная характеристика
+ */
 @Getter
 @Setter
 @Entity
