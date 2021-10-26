@@ -8,12 +8,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductTypeService implements IProductTypeService{
 
-    @Autowired
+
     ProductTypeRepository productTypeRepository;
 
+    @Autowired
+    public ProductTypeService(ProductTypeRepository productTypeRepository) {
+        this.productTypeRepository = productTypeRepository;
+    }
 
     @Override
-    public ProductType findByCategory(String category) {
+    public ProductType getByCategory(String category) {
         return productTypeRepository.findAllByNameCategory(category);
     }
+
 }

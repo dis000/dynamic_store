@@ -21,21 +21,15 @@ public class ProductType {
     @Column(name = "id")
     private Long id;
 
-
     @NotNull
     private String nameCategory;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "productCategory")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "productType")
     private Set<Product> products;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "productType")
     private Set<ProductFeature> productFeatures;
 
-    @Override
-    public String toString() {
-        return "ProductType{" +
-                "id=" + id +
-                ", nameCategory='" + nameCategory + '\'' +
-                '}';
-    }
+
+
 }

@@ -12,9 +12,13 @@ import java.util.UUID;
 @Service
 public class ProductService implements IProductService {
 
-    @Autowired
+
     ProductRepository productRepository;
 
+    @Autowired
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @Override
     public Product getProductByType(Product product) {

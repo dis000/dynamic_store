@@ -1,6 +1,7 @@
 package com.shop.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NonNull;
@@ -32,11 +33,15 @@ public class Product {
     private Integer price;
 
 
-    @NotNull
-    @ManyToOne
-    private Product productCategory;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRODUCT_TYPE_ID")
+    @JsonIgnore
+    private ProductType productType;
 
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "product")
+    @JsonIgnore
     private Set<ValueProductFeature> valueProductFeature;
+
 }

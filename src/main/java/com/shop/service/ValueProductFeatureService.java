@@ -10,8 +10,13 @@ import java.util.List;
 @Service
 public class ValueProductFeatureService implements IValueProductFeatureService{
 
-    @Autowired
+
     ValueProductFeatureRepository valueProductFeatureRepo;
+
+    @Autowired
+    public ValueProductFeatureService(ValueProductFeatureRepository valueProductFeatureRepo) {
+        this.valueProductFeatureRepo = valueProductFeatureRepo;
+    }
 
     @Override
     public List<ValueProductFeature> get(String name) {

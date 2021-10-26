@@ -16,7 +16,6 @@ import java.util.Set;
 @Setter
 @Getter
 @Table
-@ToString
 public class ProductFeature {
 
     @Id
@@ -24,14 +23,15 @@ public class ProductFeature {
     @Column(name = "id")
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "productFeature")
-    private Set<ValueProductFeature> valueProductFeature;
-
     @Column(name = "name")
     @NotNull
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "productFeature")
+    private Set<ValueProductFeature> valueProductFeature;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRODUCT_TYPE_ID")
     private ProductType productType;
 
 

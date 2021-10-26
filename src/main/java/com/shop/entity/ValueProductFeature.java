@@ -1,5 +1,6 @@
 package com.shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -26,17 +27,14 @@ public class ValueProductFeature {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "PRODUCT_ID")
+    @JsonIgnore
     private Product product;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "PRODUCT_FEATURE_ID")
     private ProductFeature productFeature;
 
-    @Override
-    public String toString() {
-        return "ValueProductFeature{" +
-                "id=" + id +
-                ", value='" + value + '\'' +
-                '}';
-    }
+
 }
