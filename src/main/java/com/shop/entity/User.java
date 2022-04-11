@@ -1,5 +1,6 @@
 package com.shop.entity;
 
+/*
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -68,3 +69,4 @@ public class User implements UserDetails {
         return true;
     }
 }
+*/

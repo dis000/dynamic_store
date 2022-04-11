@@ -1,4 +1,5 @@
 package com.shop.entity;
+/*
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,3 +31,4 @@ public class Role implements GrantedAuthority {
         return getName();
     }
 }
+*/

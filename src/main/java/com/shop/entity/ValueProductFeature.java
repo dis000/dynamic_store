@@ -36,5 +36,11 @@ public class ValueProductFeature {
     @JoinColumn(name = "PRODUCT_FEATURE_ID")
     private ProductFeature productFeature;
 
-
+    @Override
+    public String toString() {
+        return "ValueProductFeature{" +
+                "value='" + value + '\'' +
+                ", productFeature=" + productFeature +
+                '}';
+    }
 }

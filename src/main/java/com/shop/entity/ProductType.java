@@ -31,5 +31,11 @@ public class ProductType {
     private Set<ProductFeature> productFeatures;
 
 
-
+    @Override
+    public String toString() {
+        return "ProductType{" +
+                "id=" + id +
+                ", nameCategory='" + nameCategory + '\'' +
+                '}';
+    }
 }

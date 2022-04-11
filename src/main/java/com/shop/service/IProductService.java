@@ -1,5 +1,6 @@
 package com.shop.service;
 
+import com.shop.dto.ProductDto;
 import com.shop.entity.Product;
 
 import java.util.List;
@@ -12,5 +13,5 @@ public interface IProductService {
      List<Product> getAll();
      Product create(Product obj);
      Optional<Product> getByUuid(Long id);
-
+     List<ProductDto> getProductsByName(String name);
 }

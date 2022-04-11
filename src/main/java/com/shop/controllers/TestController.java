@@ -1,11 +1,12 @@
 package com.shop.controllers;
 
-import com.shop.entity.Product;
+import com.shop.dto.ProductDto;
 import com.shop.entity.ProductType;
 import com.shop.service.IProductService;
 import com.shop.service.IProductTypeService;
 import com.shop.service.IValueProductFeatureService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,8 +37,13 @@ public class TestController {
        return productType;
     }
     @GetMapping("product_feature")
-    public List<Product> getByProductFeature() {
-        return null;
+    public ResponseEntity<List<ProductDto>> getByProductFeature() {
+        List<ProductDto> productDtos = productService.getProductsByName("gtx 10610");
+
+        if (productDtos.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(productDtos);
     }
 
 }

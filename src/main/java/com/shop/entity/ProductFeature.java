@@ -1,5 +1,6 @@
 package com.shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +17,7 @@ import java.util.Set;
 @Setter
 @Getter
 @Table
+
 public class ProductFeature {
 
     @Id
@@ -28,12 +30,13 @@ public class ProductFeature {
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "productFeature")
+    @JsonIgnore
     private Set<ValueProductFeature> valueProductFeature;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PRODUCT_TYPE_ID")
+    @JsonIgnore
     private ProductType productType;
-
 
 
 }

@@ -1,37 +1,37 @@
 package com.shop.service;
 
+import com.shop.dto.ProductDto;
 import com.shop.entity.Product;
+import com.shop.mapper.ValueProductFeatureMapper;
+import com.shop.mapper.ProductMapper;
 import com.shop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+import java.util.Set;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class ProductService implements IProductService {
 
 
-    ProductRepository productRepository;
+    private ProductRepository productRepository;
+    ProductMapper productMapper;
+    ValueProductFeatureMapper valueProductFeatureMapper;
 
     @Autowired
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, ProductMapper productMapper,
+                          ValueProductFeatureMapper valueProductFeatureMapper) {
         this.productRepository = productRepository;
+        this.productMapper = productMapper;
+        this.valueProductFeatureMapper = valueProductFeatureMapper;
     }
 
     @Override
     public Product getProductByType(Product product) {
-
-       /* System.out.println("ленивый");
-        System.out.println(productRepository.findById(1L).get().getPrice());
-
-        System.out.println("полный");
-
-       productRepository.findById(1L).get().getValueProductCharacteristic().forEach(valueCharacteristic -> System.out.println(valueCharacteristic.getValue()));
-
-        */
-   //     return productRepository.findByProductTypeOrderByName(product);
         return null;
     }
 
@@ -50,4 +50,17 @@ public class ProductService implements IProductService {
         return productRepository.findById(id);
     }
 
+    @Override
+    public List<ProductDto> getProductsByName(String name) {
+
+        Set<Product> products = productRepository.findByName(name);
+
+        List<ProductDto> productDtos = products.stream().map(product -> {
+            ProductDto productDto = productMapper.toDto(product);
+            productDto.setFeatures(product.getValueProductFeature().stream().map(valueProductFeatureMapper::toDto).collect(toList()));
+            return productDto;
+        }).collect(toList());
+
+        return productDtos;
+    }
 }

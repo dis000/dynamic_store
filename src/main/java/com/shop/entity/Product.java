@@ -6,8 +6,10 @@ import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Set;
 
 /**
@@ -17,6 +19,7 @@ import java.util.Set;
 @Setter
 @Getter
 @Table
+@ToString
 public class Product {
 
     @Id
@@ -30,7 +33,7 @@ public class Product {
 
     @Column(name = "price")
     @NotNull
-    private Integer price;
+    private BigDecimal price;
 
 
 
@@ -43,5 +46,8 @@ public class Product {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "product")
     @JsonIgnore
     private Set<ValueProductFeature> valueProductFeature;
+
+
+
 
 }
