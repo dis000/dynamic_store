@@ -6,6 +6,7 @@ import com.shop.mapper.ValueProductFeatureMapper;
 import com.shop.mapper.ProductMapper;
 import com.shop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -62,5 +63,10 @@ public class ProductService implements IProductService {
         }).collect(toList());
 
         return productDtos;
+    }
+
+    @Override
+    public List<Product> getByCategory(String category, Pageable page) {
+        return productRepository.findProductsByCategory(category, page);
     }
 }

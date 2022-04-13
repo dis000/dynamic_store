@@ -30,11 +30,13 @@ public class ValueProductFeature {
     @JoinColumn(name = "PRODUCT_ID")
     @JsonIgnore
     private Product product;
+    //id
 
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PRODUCT_FEATURE_ID")
     private ProductFeature productFeature;
+    //id
 
     @Override
     public String toString() {

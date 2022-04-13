@@ -5,6 +5,8 @@ import com.shop.repository.ProductTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @Service
 public class ProductTypeService implements IProductTypeService{
 
@@ -18,7 +20,7 @@ public class ProductTypeService implements IProductTypeService{
 
     @Override
     public ProductType getByCategory(String category) {
-        return productTypeRepository.findAllByNameCategory(category);
+        return productTypeRepository.findProductsByCategory(category);
     }
 
 }

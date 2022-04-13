@@ -1,5 +1,6 @@
 package com.shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,6 +29,7 @@ public class ProductType {
     private Set<Product> products;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "productType")
+    @JsonIgnore
     private Set<ProductFeature> productFeatures;
 
 
