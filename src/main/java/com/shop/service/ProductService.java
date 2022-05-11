@@ -10,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
@@ -19,7 +18,7 @@ import static java.util.stream.Collectors.toList;
 public class ProductService implements IProductService {
 
 
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
     ProductMapper productMapper;
     ValueProductFeatureMapper valueProductFeatureMapper;
 
@@ -47,8 +46,13 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Optional<Product> getByUuid(Long id) {
-        return productRepository.findById(id);
+    public ProductDto getById(Long id) {
+        Product product = productRepository.findById(id).orElse(null);
+
+        //TODO бросить exception not found
+
+
+        return productMapper.toDto(product);
     }
 
     @Override

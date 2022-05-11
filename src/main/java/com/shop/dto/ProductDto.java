@@ -11,6 +11,7 @@ import java.util.List;
 @Getter
 @ToString
 public class ProductDto {
+    public Long id;
     public String name;
     public BigDecimal price;
     List<ValueProductFeatureValueDto> features;
