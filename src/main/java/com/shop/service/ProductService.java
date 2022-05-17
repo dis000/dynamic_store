@@ -1,7 +1,9 @@
 package com.shop.service;
 
 import com.shop.dto.ProductDto;
+import com.shop.dto.ProductShortDto;
 import com.shop.entity.Product;
+import com.shop.mapper.ProductShortMapper;
 import com.shop.mapper.ValueProductFeatureMapper;
 import com.shop.mapper.ProductMapper;
 import com.shop.repository.ProductRepository;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -19,15 +22,19 @@ public class ProductService implements IProductService {
 
 
     private final ProductRepository productRepository;
-    ProductMapper productMapper;
-    ValueProductFeatureMapper valueProductFeatureMapper;
+    private final ProductMapper productMapper;
+    private final ValueProductFeatureMapper valueProductFeatureMapper;
+    private final ProductShortMapper productShortMapper;
 
     @Autowired
-    public ProductService(ProductRepository productRepository, ProductMapper productMapper,
-                          ValueProductFeatureMapper valueProductFeatureMapper) {
+    public ProductService(ProductRepository productRepository,
+                          ProductMapper productMapper,
+                          ValueProductFeatureMapper valueProductFeatureMapper,
+                          ProductShortMapper productShortMapper) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
         this.valueProductFeatureMapper = valueProductFeatureMapper;
+        this.productShortMapper = productShortMapper;
     }
 
     @Override
@@ -70,7 +77,10 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Product> getByCategory(String category, Pageable page) {
-        return productRepository.findProductsByCategory(category, page);
+    public List<ProductShortDto> getShortByCategory(String category, Pageable page) {
+        return productRepository.findProductsByCategory(category, page).stream()
+                .map(productShortMapper::toDto)
+                .collect(Collectors.toList());
+
     }
 }

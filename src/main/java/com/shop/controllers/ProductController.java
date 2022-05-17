@@ -1,7 +1,7 @@
 package com.shop.controllers;
 
 import com.shop.dto.ProductDto;
-import com.shop.entity.Product;
+import com.shop.dto.ProductShortDto;
 import com.shop.service.IProductService;
 import com.shop.service.IProductTypeService;
 import com.shop.service.IValueProductFeatureService;
@@ -34,7 +34,7 @@ public class ProductController {
         this.valueProductFeatureService = valueProductFeatureService;
     }
 
-    @GetMapping("product{id}")
+    @GetMapping("product")
     public ResponseEntity<ProductDto> getFullProductById(@RequestParam long id) {
         ProductDto productDto = productService.getById(id);
 
@@ -45,8 +45,8 @@ public class ProductController {
     }
 
     @GetMapping("product_feature")
-    public ResponseEntity<List<ProductDto>> getByProductFeature() {
-        List<ProductDto> productDtos = productService.getProductsByName("gtx 10610");
+    public ResponseEntity<List<ProductDto>> getByProductFeature(@RequestParam String feature) {
+        List<ProductDto> productDtos = productService.getProductsByName(feature);
 
         if (productDtos.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -55,18 +55,19 @@ public class ProductController {
     }
 //done
     @GetMapping("category/{category}")
-    public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable String category,
+    public ResponseEntity<List<ProductShortDto>> getProductsByCategory(@PathVariable String category,
                                                                @RequestParam(required = false,defaultValue = "0") int p) {
 
         Pageable page = PageRequest.of(p,2);
 
-        List<Product> productPage = productService.getByCategory(category, page);
+        List<ProductShortDto> productPage = productService.getShortByCategory(category, page);
 
         if (productPage.isEmpty())
             return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(productPage);
     }
+   // @GetMapping("category/{category}")
 
 
 

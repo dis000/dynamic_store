@@ -35,19 +35,13 @@ public class Product {
     @NotNull
     private BigDecimal price;
 
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PRODUCT_TYPE_ID")
     @JsonIgnore
     private ProductType productType;
 
-
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "product")
     @JsonIgnore
     private Set<ValueProductFeature> valueProductFeature;
-
-
-
 
 }
