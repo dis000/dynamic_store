@@ -15,4 +15,5 @@
     <include file="_03_fill_db_product.xml" relativeToChangelogFile="true"/>
     <include file="_04_fill_db_value_product_feature.xml" relativeToChangelogFile="true"/>
 
+
 </databaseChangeLog>

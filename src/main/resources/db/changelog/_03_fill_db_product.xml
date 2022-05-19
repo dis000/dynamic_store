@@ -10,7 +10,7 @@
         <insert
                 schemaName="public"
                 tableName="product">
-            <column name="name" value="MSI GeForce RTX 3060 Ti GAMING Z TRIO"/>
+            <column name="name" value="Видеокарта MSI GeForce RTX 3060 Ti GAMING Z TRIO"/>
             <column name="price" value="85299"/>
             <column name="product_type_id"
                     valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарта')"/>
@@ -19,7 +19,7 @@
         <insert
                 schemaName="public"
                 tableName="product">
-            <column name="name" value="MSI GeForce RTX 3050 GAMING X"/>
+            <column name="name" value="Видеокарта MSI GeForce RTX 3050 GAMING X"/>
             <column name="price" value="46799"/>
             <column name="product_type_id"
                     valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарта')"/>
@@ -28,7 +28,7 @@
         <insert
                 schemaName="public"
                 tableName="product">
-            <column name="name" value="GIGABYTE GeForce RTX 3050 GAMING OC"/>
+            <column name="name" value="Видеокарта GIGABYTE GeForce RTX 3050 GAMING OC"/>
             <column name="price" value="49399"/>
             <column name="product_type_id"
                     valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарта')"/>
@@ -37,11 +37,124 @@
         <insert
                 schemaName="public"
                 tableName="product">
-            <column name="name" value="GIGABYTE GeForce RTX 2060 D6 6G"/>
+            <column name="name" value="Видеокарта GIGABYTE GeForce RTX 2060 D6 6G"/>
             <column name="price" value="42999"/>
             <column name="product_type_id"
                     valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарта')"/>
         </insert>
+
+        <insert
+                schemaName="public"
+                tableName="product">
+            <column name="name" value="Процессор AMD Ryzen 5 3600 OEM"/>
+            <column name="price" value="16999"/>
+            <column name="product_type_id"
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+        </insert>
+
+        <insert
+                schemaName="public"
+                tableName="product">
+            <column name="name" value="Процессор Intel Core i5-10400F BOX"/>
+            <column name="price" value="12799"/>
+            <column name="product_type_id"
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+        </insert>
+
+        <insert
+                schemaName="public"
+                tableName="product">
+            <column name="name" value="Процессор AMD Ryzen 5 5600X OEM"/>
+            <column name="price" value="20499"/>
+            <column name="product_type_id"
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+        </insert>
+
+        <insert
+                schemaName="public"
+                tableName="product">
+            <column name="name" value="Процессор Intel Core i5-11400F OEM"/>
+            <column name="price" value="14899"/>
+            <column name="product_type_id"
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+        </insert>
+
+        <insert
+                schemaName="public"
+                tableName="product">
+            <column name="name" value="Оперативная память Kingston FURY Beast Black 16 гб"/>
+            <column name="price" value="8299"/>
+            <column name="product_type_id"
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Оперативная память')"/>
+        </insert>
+
+        <insert
+                schemaName="public"
+                tableName="product">
+            <column name="name" value="Оперативная память AMD Radeon R7 Performance Series 8 ГБ"/>
+            <column name="price" value="2299"/>
+            <column name="product_type_id"
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Оперативная память')"/>
+        </insert>
+
+        <insert
+                schemaName="public"
+                tableName="product">
+            <column name="name" value="Оперативная память A-Data XPG Lancer RGB 32 ГБ"/>
+            <column name="price" value="22999"/>
+            <column name="product_type_id"
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Оперативная память')"/>
+        </insert>
+
+        <insert
+                schemaName="public"
+                tableName="product">
+            <column name="name" value="500 ГБ 2.5 SSD SATA накопитель Samsung 870 EVO"/>
+            <column name="price" value="8999"/>
+            <column name="product_type_id"
+                    valueComputed="(SELECT product_type.id from product_type where name_category='ssd')"/>
+        </insert>
+
+        <insert
+                schemaName="public"
+                tableName="product">
+            <column name="name" value="240 ГБ SSD 2.5 SATA накопитель Kingston A400"/>
+            <column name="price" value="2699"/>
+            <column name="product_type_id"
+                    valueComputed="(SELECT product_type.id from product_type where name_category='ssd')"/>
+        </insert>
+
+        <insert
+                schemaName="public"
+                tableName="product">
+            <column name="name" value="1000 ГБ SSD M.2 накопитель Samsung 980"/>
+            <column name="price" value="13299"/>
+            <column name="product_type_id"
+                    valueComputed="(SELECT product_type.id from product_type where name_category='ssd')"/>
+        </insert>
+
+        <insert
+                schemaName="public"
+                tableName="product">
+            <column name="name" value="120 ГБ SSD M.2 накопитель ExeGate NextPro UV500TS120"/>
+            <column name="price" value="1750"/>
+            <column name="product_type_id"
+                    valueComputed="(SELECT product_type.id from product_type where name_category='ssd')"/>
+        </insert>
+
+        <insert
+                schemaName="public"
+                tableName="product">
+            <column name="name" value="480 ГБ 2.5 SSD SATA накопитель Kingston A400"/>
+            <column name="price" value="4699"/>
+            <column name="product_type_id"
+                    valueComputed="(SELECT product_type.id from product_type where name_category='ssd')"/>
+        </insert>
+
+
+
+
+
 
     </changeSet>
 </databaseChangeLog>
