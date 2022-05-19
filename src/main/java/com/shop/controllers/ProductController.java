@@ -45,16 +45,17 @@ public class ProductController {
         return ResponseEntity.ok(productDto);
     }
 
-    @GetMapping("product_feature")
-    public ResponseEntity<List<ProductDto>> getByProductFeature(@RequestParam String feature) {
-        List<ProductDto> productDtos = productService.getProductsByName(feature);
+    // done поиск по имени
+    @GetMapping("search_by_name")
+    public ResponseEntity<List<ProductShortDto>> getByProductByName(@RequestParam String name) {
+        List<ProductShortDto> productDtos = productService.getProductsByName(name);
 
         if (productDtos.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(productDtos);
     }
-//done
+    //done
     @GetMapping("category/{category}")
     public ResponseEntity<List<ProductShortDto>> getProductsByCategory(@PathVariable String category,
                                                                @RequestParam(required = false,defaultValue = "0") int p) {

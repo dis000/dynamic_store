@@ -14,6 +14,6 @@ public class ProductDto {
     public Long id;
     public String name;
     public BigDecimal price;
-    List<ValueProductFeatureValueDto> features;
+    List<ValueProductFeatureDto> features;
 
 }

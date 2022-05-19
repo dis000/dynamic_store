@@ -16,10 +16,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
   //  List<Product> findByValueProductCharacteristicIn(Iterable<ValueProductFeature> valueCharacteristics);
 
   //    Product findByProductTypeOrderByName(Product productType);
-  @Query(value = "select p from Product p left join p.valueProductFeature where p.name = :name")
+  @Query(value = "select distinct p from Product p where lower(p.name) like lower(CONCAT('%', :name, '%'))")
   Set<Product> findByName(@Param("name") String name);
 
-  @Query(value = "select p from Product p inner join p.productType where p.productType.nameCategory = :category order by p.price")
+
+  @Query(value = "select distinct p from Product p inner join p.productType where lower(p.productType.nameCategory) = lower(:category) order by p.price")
   List<Product> findProductsByCategory(@Param("category") String category, Pageable page);
 
 }

@@ -14,7 +14,7 @@ public interface IProductService {
      List<Product> getAll();
      Product create(Product obj);
      ProductDto getById(Long id);
-     List<ProductDto> getProductsByName(String name);
+     List<ProductShortDto> getProductsByName(String name);
 
 
 

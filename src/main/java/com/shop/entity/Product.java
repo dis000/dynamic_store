@@ -39,7 +39,7 @@ public class Product {
     @JsonIgnore
     private ProductType productType;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "product")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "product")
     @JsonIgnore
     private Set<ValueProductFeature> valueProductFeature;
 

@@ -2,7 +2,11 @@ package com.shop.service;
 
 import com.shop.dto.ProductDto;
 import com.shop.dto.ProductShortDto;
+import com.shop.dto.ValueProductFeatureDto;
 import com.shop.entity.Product;
+import com.shop.entity.ProductFeature;
+import com.shop.entity.ValueProductFeature;
+import com.shop.exception.ProductNotFoundException;
 import com.shop.mapper.ProductShortMapper;
 import com.shop.mapper.ValueProductFeatureMapper;
 import com.shop.mapper.ProductMapper;
@@ -15,6 +19,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static java.util.Objects.isNull;
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -54,26 +59,21 @@ public class ProductService implements IProductService {
 
     @Override
     public ProductDto getById(Long id) {
-        Product product = productRepository.findById(id).orElse(null);
-
-        //TODO бросить exception not found
+        Product product = productRepository.findById(id).orElseThrow(ProductNotFoundException::new);
 
 
-        return productMapper.toDto(product);
+        List<ValueProductFeatureDto> productFeatures = product.getValueProductFeature().stream().map(valueProductFeatureMapper::toDto).collect(toList());
+
+
+        return productMapper.toDto(product, productFeatures);
     }
 
     @Override
-    public List<ProductDto> getProductsByName(String name) {
+    public List<ProductShortDto> getProductsByName(String name) {
 
         Set<Product> products = productRepository.findByName(name);
 
-        List<ProductDto> productDtos = products.stream().map(product -> {
-            ProductDto productDto = productMapper.toDto(product);
-            productDto.setFeatures(product.getValueProductFeature().stream().map(valueProductFeatureMapper::toDto).collect(toList()));
-            return productDto;
-        }).collect(toList());
-
-        return productDtos;
+        return products.stream().map(productShortMapper::toDto).collect(toList());
     }
 
     @Override
