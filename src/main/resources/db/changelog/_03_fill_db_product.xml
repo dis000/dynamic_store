@@ -13,7 +13,7 @@
             <column name="name" value="Видеокарта MSI GeForce RTX 3060 Ti GAMING Z TRIO"/>
             <column name="price" value="85299"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарта')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарты')"/>
         </insert>
 
         <insert
@@ -22,7 +22,7 @@
             <column name="name" value="Видеокарта MSI GeForce RTX 3050 GAMING X"/>
             <column name="price" value="46799"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарта')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарты')"/>
         </insert>
 
         <insert
@@ -31,7 +31,7 @@
             <column name="name" value="Видеокарта GIGABYTE GeForce RTX 3050 GAMING OC"/>
             <column name="price" value="49399"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарта')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарты')"/>
         </insert>
 
         <insert
@@ -40,7 +40,7 @@
             <column name="name" value="Видеокарта GIGABYTE GeForce RTX 2060 D6 6G"/>
             <column name="price" value="42999"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарта')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарты')"/>
         </insert>
 
         <insert
@@ -49,7 +49,7 @@
             <column name="name" value="Процессор AMD Ryzen 5 3600 OEM"/>
             <column name="price" value="16999"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
         </insert>
 
         <insert
@@ -58,7 +58,7 @@
             <column name="name" value="Процессор Intel Core i5-10400F BOX"/>
             <column name="price" value="12799"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
         </insert>
 
         <insert
@@ -67,7 +67,7 @@
             <column name="name" value="Процессор AMD Ryzen 5 5600X OEM"/>
             <column name="price" value="20499"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
         </insert>
 
         <insert
@@ -76,7 +76,7 @@
             <column name="name" value="Процессор Intel Core i5-11400F OEM"/>
             <column name="price" value="14899"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
         </insert>
 
         <insert

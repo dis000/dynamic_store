@@ -12,7 +12,7 @@
                 tableName="product_feature">
             <column name="name" value="Код производителя"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарта')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарты')"/>
         </insert>
 
         <insert
@@ -20,7 +20,7 @@
                 tableName="product_feature">
             <column name="name" value="Видеопамять"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарта')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарты')"/>
         </insert>
 
         <insert
@@ -28,7 +28,7 @@
                 tableName="product_feature">
             <column name="name" value="Рекомендуемый блок питания"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарта')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарты')"/>
         </insert>
 
         <insert
@@ -36,7 +36,7 @@
                 tableName="product_feature">
             <column name="name" value="Техпроцесс"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарта')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарты')"/>
         </insert>
 
         <insert
@@ -44,7 +44,7 @@
                 tableName="product_feature">
             <column name="name" value="Длина видеокарты"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарта')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарты')"/>
         </insert>
 
         <insert
@@ -52,7 +52,7 @@
                 tableName="product_feature">
             <column name="name" value="Гарантия"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарта')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарты')"/>
         </insert>
 
         <insert
@@ -60,7 +60,7 @@
                 tableName="product_feature">
             <column name="name" value="Частота"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
         </insert>
 
         <insert
@@ -68,7 +68,7 @@
                 tableName="product_feature">
             <column name="name" value="Техпроцесс"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
         </insert>
 
         <insert
@@ -76,7 +76,7 @@
                 tableName="product_feature">
             <column name="name" value="Количество ядер"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
         </insert>
 
         <insert
@@ -84,7 +84,7 @@
                 tableName="product_feature">
             <column name="name" value="Количество потоков"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
         </insert>
 
         <insert
@@ -92,7 +92,7 @@
                 tableName="product_feature">
             <column name="name" value="Код производителя"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
         </insert>
 
         <insert
@@ -100,7 +100,7 @@
                 tableName="product_feature">
             <column name="name" value="Сокет"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
         </insert>
 
         <insert
@@ -108,7 +108,7 @@
                 tableName="product_feature">
             <column name="name" value="Тип памяти"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
         </insert>
 
         <insert
@@ -116,7 +116,7 @@
                 tableName="product_feature">
             <column name="name" value="Гарантия"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
         </insert>
 
         <insert
@@ -124,7 +124,7 @@
                 tableName="product_feature">
             <column name="name" value="Объем кэша L2"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
         </insert>
 
         <insert
@@ -132,7 +132,7 @@
                 tableName="product_feature">
             <column name="name" value="Объем кэша L3"/>
             <column name="product_type_id"
-                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессор')"/>
+                    valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
         </insert>
 
         <insert

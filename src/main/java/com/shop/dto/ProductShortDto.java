@@ -1,16 +1,16 @@
 package com.shop.dto;
 
+
+
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.math.BigDecimal;
 
-@Setter
+@Builder
 @Getter
-@ToString
 public class ProductShortDto {
-    public Long id;
-    public String name;
-    public BigDecimal price;
+    private final Long id;
+    private final String name;
+    private final BigDecimal price;
 }

@@ -1,19 +1,13 @@
 package com.shop.dto;
 
-import lombok.AllArgsConstructor;
+
+import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Getter
-@Setter
-@AllArgsConstructor
-@RequiredArgsConstructor
-@ToString
+@Builder
 public class ValueProductFeatureDto {
-    // ProductFeature name
-    String featureName;
-    //valueProductFeature value
-    String value;
+
+    private final String featureName;
+    private final String value;
 }

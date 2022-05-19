@@ -11,13 +11,13 @@
                 schemaName="public"
                 tableName="product_type">
 
-            <column name="name_category" value="Видеокарта"/>
+            <column name="name_category" value="Видеокарты"/>
         </insert>
         <insert
                 schemaName="public"
                 tableName="product_type">
 
-            <column name="name_category" value="Процессор"/>
+            <column name="name_category" value="Процессоры"/>
         </insert>
         <insert
                 schemaName="public"

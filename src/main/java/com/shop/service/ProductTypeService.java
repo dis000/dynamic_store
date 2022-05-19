@@ -1,27 +1,15 @@
 package com.shop.service;
 
-import com.shop.dto.ProductDto;
-import com.shop.entity.ProductType;
-import com.shop.mapper.ProductMapper;
-import com.shop.repository.ProductTypeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.shop.dto.CategoryDto;
+import com.shop.dto.ProductShortDto;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-@Service
-public class ProductTypeService implements IProductTypeService{
+public interface ProductTypeService {
 
+    List<CategoryDto> getCategories(Pageable page);
 
-    ProductTypeRepository productTypeRepository;
-    ProductMapper productMapper;
-
-    @Autowired
-    public ProductTypeService(ProductTypeRepository productTypeRepository,
-                              ProductMapper productMapper) {
-        this.productTypeRepository = productTypeRepository;
-        this.productMapper = productMapper;
-    }
+    List<ProductShortDto> getShortByCategory(String category, Pageable page);
 
 }

@@ -4,13 +4,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class ProductNotFoundException extends ParentException{
+public class CategoryNotFoundException extends ParentException {
 
-    public ProductNotFoundException(String message) {
+    public CategoryNotFoundException(String message) {
         super(message);
     }
 
-    public ProductNotFoundException() {
-        super();
+    public CategoryNotFoundException() {
     }
 }
