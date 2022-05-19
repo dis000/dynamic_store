@@ -3,12 +3,16 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+                      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
 
+    <include file="001_19-02-22-product_type.xml" relativeToChangelogFile="true"/>
+    <include file="002_19-02-22-product_feature.xml" relativeToChangelogFile="true"/>
+    <include file="003_19-02-22-product.xml" relativeToChangelogFile="true"/>
+    <include file="004_19-02-22-value_product_feature.xml" relativeToChangelogFile="true"/>
+    <include file="_01_fill_db_product_type.xml" relativeToChangelogFile="true"/>
+    <include file="_02_fill_db_product_feature.xml" relativeToChangelogFile="true"/>
+    <include file="_03_fill_db_product.xml" relativeToChangelogFile="true"/>
+    <include file="_04_fill_db_value_product_feature.xml" relativeToChangelogFile="true"/>
 
-<!--
-    <include file="changeset-genre-table.xml" relativeToChangelogFile="true"/>
-
-    <include file="changeset-book-table.xml" relativeToChangelogFile="true"/>
--->
 </databaseChangeLog>

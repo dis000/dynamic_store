@@ -16,7 +16,7 @@ import javax.persistence.*;
 @Table
 public class ValueProductFeature {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 

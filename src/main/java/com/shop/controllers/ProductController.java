@@ -34,6 +34,7 @@ public class ProductController {
         this.valueProductFeatureService = valueProductFeatureService;
     }
 
+    // взять продукт
     @GetMapping("product")
     public ResponseEntity<ProductDto> getFullProductById(@RequestParam long id) {
         ProductDto productDto = productService.getById(id);
