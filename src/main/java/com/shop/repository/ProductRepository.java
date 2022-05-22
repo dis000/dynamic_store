@@ -23,6 +23,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
           "inner join p.productType pt where lower(pt.nameCategory) = lower(:category) order by p.price")
   List<Product> findProductsByCategory(@Param("category") String category, Pageable page);
 
+  @Query(value = "select distinct p from Product p " +
+          " where p.priceWithoutDiscount is not NULL")
+  List<Product> findProductsByDiscount(Pageable page);
+
 
   @Query(value = "select p from Product p " +
           "left join fetch p.valueProductFeature vpf " +

@@ -10,6 +10,7 @@ import com.shop.mapper.ProductShortMapper;
 import com.shop.mapper.ValueProductFeatureMapper;
 import com.shop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -61,5 +62,13 @@ public class ProductServiceImpl implements ProductService {
         return products.stream().map(productShortMapper::toDto).collect(toList());
     }
 
+    @Override
+    public List<ProductShortDto> getProductByDiscount(Pageable page) {
+        List<Product> products = productRepository.findProductsByDiscount(page);
 
+        if (products.isEmpty())
+            throw new ProductNotFoundException("Продукт со скидкой не найден");
+
+        return products.stream().map(productShortMapper::toDto).collect(toList());
+    }
 }

@@ -12,7 +12,15 @@
             </column>
             <column name="name" type="VARCHAR(255)"/>
             <column name="price" type="DECIMAL"/>
+            <column name="price_without_discount" type="DECIMAL">
+                <constraints nullable="true"/>
+            </column>
+            <column name="amount" type="BIGINT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="picture" type="VARCHAR"/>
             <column name="product_type_id" type="BIGINT"/>
+
         </createTable>
 
         <addAutoIncrement
