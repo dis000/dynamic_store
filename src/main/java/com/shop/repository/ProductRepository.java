@@ -19,11 +19,14 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
   Set<Product> findByName(@Param("name") String name);
 
 
-  @Query(value = "select distinct p from Product p inner join p.productType pt where lower(pt.nameCategory) = lower(:category) order by p.price")
+  @Query(value = "select distinct p from Product p " +
+          "inner join p.productType pt where lower(pt.nameCategory) = lower(:category) order by p.price")
   List<Product> findProductsByCategory(@Param("category") String category, Pageable page);
 
 
-  @Query(value = "select p from Product p left join fetch p.valueProductFeature vpf left join fetch vpf.productFeature where  p.id = :id")
+  @Query(value = "select p from Product p " +
+          "left join fetch p.valueProductFeature vpf " +
+          "left join fetch vpf.productFeature where  p.id = :id")
   Optional<Product> findProductById(@Param("id") Long id);
 
 }
