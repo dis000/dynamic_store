@@ -18,5 +18,5 @@ public class ProductShortDto {
     private final BigDecimal price;
     private final BigDecimal priceWithoutDiscount;
     private Integer discountPercent;
-    private final String picture;
+    private String picture;
 }

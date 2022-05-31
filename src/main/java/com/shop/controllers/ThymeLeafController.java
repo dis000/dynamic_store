@@ -9,12 +9,14 @@ import com.shop.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -36,6 +38,8 @@ public class ThymeLeafController {
         this.productService = productService;
     }
     public static final BigDecimal ONE_HUNDRED = new BigDecimal(100);
+
+
     @GetMapping("category")
     public String getProductsByCategory(@RequestParam(required = false,defaultValue = "0") int p, Model model) {
 
@@ -48,11 +52,24 @@ public class ThymeLeafController {
 
         List<ProductShortDto> productShortDtos0 = productTypeService.getShortByCategory("Видеокарты", page);
 
+        for (ProductShortDto productShortDto:
+             productShortDtos0) {
+            if (isNull(productShortDto.getPicture())) {
+                productShortDto.setPicture("/assets/img/product/product1.jpg");
+            }
+        }
+
+
         model.addAttribute("productFirst", productShortDtos0);
 
         List<ProductShortDto> productShortDtos1 = productTypeService.getShortByCategory("Процессоры", page);
 
-
+        for (ProductShortDto productShortDto:
+                productShortDtos1) {
+            if (isNull(productShortDto.getPicture())) {
+                productShortDto.setPicture("/assets/img/product/product2.jpg");
+            }
+        }
 
         model.addAttribute("productSecond", productShortDtos1);
 
@@ -66,6 +83,9 @@ public class ThymeLeafController {
                     .multiply(ONE_HUNDRED).intValue();
 
             productShortDto.setDiscountPercent(percent);
+            if (isNull(productShortDto.getPicture())) {
+                productShortDto.setPicture("/assets/img/product/product2.jpg");
+            }
         });
 
 
@@ -83,10 +103,6 @@ public class ThymeLeafController {
 
         ProductDto productDto = productService.getById(id);
 
-/*
-        if (isNull(productDto))
-            return "404";
-*/
 
         model.addAttribute("product", productDto);
         Pageable page = PageRequest.of(0,8);
@@ -95,5 +111,29 @@ public class ThymeLeafController {
         model.addAttribute("categories", categories);
 
         return "product-details";
+    }
+
+    @GetMapping("search")
+    public String searchProduct(Model model, @Param("name") String name) {
+
+        Pageable page = PageRequest.of(0,8);
+        List<CategoryDto> categories = productTypeService.getCategories(page);
+        model.addAttribute("categories", categories);
+
+
+        List<ProductShortDto> productsByName = productService.getProductsByName(name);
+
+
+        for (ProductShortDto productShortDto:
+                productsByName) {
+            if (isNull(productShortDto.getPicture())) {
+                productShortDto.setPicture("/assets/img/product/product1.jpg");
+            }
+        }
+
+
+        model.addAttribute("products", productsByName);
+
+        return "search";
     }
 }
