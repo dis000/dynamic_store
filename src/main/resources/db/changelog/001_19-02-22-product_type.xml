@@ -11,6 +11,7 @@
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_product_type"/>
             </column>
             <column name="name_category" type="VARCHAR(255)"/>
+            <column name="picture" type="VARCHAR"/>
         </createTable>
 
         <addAutoIncrement

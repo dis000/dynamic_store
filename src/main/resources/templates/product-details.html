@@ -52,22 +52,7 @@
     <header th:insert="/blocks/constructor-header :: header"> </header>
     <!--header area end-->
 
-    <!--breadcrumbs area start-->
-    <div class="breadcrumbs_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumb_content">
-                        <ul>
-                            <li><a href="index.html">home</a></li>
-                            <li>product details</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--breadcrumbs area end-->
+
 
     <!--product details start-->
     <div class="product_details mt-100 mb-100">
@@ -77,17 +62,17 @@
                     <div class="product-details-tab">
                         <div id="img-1" class="zoomWrapper single-zoom">
                             <a href="#">
-                                <img id="zoom1" src="/assets/img/product/productbig4.jpg"
-                                    data-zoom-image="/assets/img/product/productbig4.jpg" alt="big-1">
+                                <img id="zoom1" th:src="${product.getPicture()}"
+                                    th:data-zoom-image="${product.getPicture()}" alt="big-1">
                             </a>
                         </div>
                         <div class="single-zoom-thumb">
                             <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
                                 <li>
                                     <a href="#" class="elevatezoom-gallery active" data-update=""
-                                        data-image="/assets/img/product/productbig4.jpg"
-                                        data-zoom-image="/assets/img/product/productbig4.jpg">
-                                        <img src="/assets/img/product/productbig4.jpg" alt="zo-th-1" />
+                                       th:data-image="${product.getPicture()}"
+                                       th:data-zoom-image="${product.getPicture()}">
+                                        <img th:src="${product.getPicture()}" alt="zo-th-1"/>
                                     </a>
 
                                 </li>
@@ -123,29 +108,29 @@
                     <div class="product_d_right">
                         <form action="#">
 
-                            <h1><a href="#">commodo augue nisi</a></h1>
-                            <div class="product_nav">
+                            <h1 th:text="${product.getName()}"> </h1>
+                            <div class="product_rating">
                                 <ul>
-                                    <li class="prev"><a href="product-details.html"><i class="fa fa-angle-left"></i></a>
-                                    </li>
-                                    <li class="next"><a href="variable-product.html"><i
-                                                class="fa fa-angle-right"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class=" product_ratting">
-                                <ul>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li class="review"><a href="#"> (customer review ) </a></li>
-                                </ul>
 
+                                    <li th:if="${product.getRating < 0.5}"><a href="#"><i class="icon-star"></i></a></li>
+                                    <li th:if="${product.getRating >= 0.5}"><a href="#"><i class="icon-star2"></i></a></li>
+
+                                    <li th:if="${product.getRating < 1.5}"><a href="#"><i class="icon-star"></i></a></li>
+                                    <li th:if="${product.getRating >= 1.5}"><a href="#"><i class="icon-star2"></i></a></li>
+
+                                    <li th:if="${product.getRating < 2.5}"><a href="#"><i class="icon-star"></i></a></li>
+                                    <li th:if="${product.getRating >= 2.5}"><a href="#"><i class="icon-star2"></i></a></li>
+
+                                    <li th:if="${product.getRating < 3.5}"><a href="#"><i class="icon-star"></i></a></li>
+                                    <li th:if="${product.getRating >= 3.5}"><a href="#"><i class="icon-star2"></i></a></li>
+
+                                    <li th:if="${product.getRating < 4.5}"><a href="#"><i class="icon-star"></i></a></li>
+                                    <li th:if="${product.getRating >= 4.5}"><a href="#"><i class="icon-star2"></i></a></li>
+                                </ul>
                             </div>
                             <div class="price_box">
-                                <span class="current_price">£70.00</span>
-                                <span class="old_price">£80.00</span>
+                                <span class="current_price" th:text="${product.getPrice()}+ ' ₽'"></span>
+                                <span class="old_price" th:if="${product.getPriceWithoutDiscount() != null}" th:text="${product.getPriceWithoutDiscount()}+ ' ₽'"></span>
 
                             </div>
                             <div class="product_desc">
@@ -154,7 +139,7 @@
                                     neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et
                                     placerat vestibulum, metus nisi posuere nisl, in </p>
                             </div>
-                            <div class="product_variant color">
+                            <div class="product_variant color" th:each="feature : ${product.getFeatures()}" th:if="${feature.getFeatureName() == 'color'}">
                                 <h3>Available Options</h3>
                                 <label>color</label>
                                 <ul>
@@ -168,34 +153,11 @@
                                 <label>quantity</label>
                                 <input min="1" max="100" value="1" type="number">
                                 <button class="button" type="submit">add to cart</button>
-
-                            </div>
-                            <div class=" product_d_action">
-                                <ul>
-                                    <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
-                                    <li><a href="#" title="Add to wishlist">+ Compare</a></li>
-                                </ul>
                             </div>
                             <div class="product_meta">
-                                <span>Category: <a href="#">Clothing</a></span>
+                                <span>Категория: <a href="#" th:text="${product.getCategory()}">Clothing</a></span>
                             </div>
-
                         </form>
-                        <div class="priduct_social">
-                            <ul>
-                                <li><a class="facebook" href="#" title="facebook"><i class="fa fa-facebook"></i>
-                                        Like</a></li>
-                                <li><a class="twitter" href="#" title="twitter"><i class="fa fa-twitter"></i> tweet</a>
-                                </li>
-                                <li><a class="pinterest" href="#" title="pinterest"><i class="fa fa-pinterest"></i>
-                                        save</a></li>
-                                <li><a class="google-plus" href="#" title="google +"><i class="fa fa-google-plus"></i>
-                                        share</a></li>
-                                <li><a class="linkedin" href="#" title="linkedin"><i class="fa fa-linkedin"></i>
-                                        linked</a></li>
-                            </ul>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -213,15 +175,15 @@
                             <ul class="nav" role="tablist">
                                 <li>
                                     <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info"
-                                        aria-selected="false">Description</a>
+                                        aria-selected="false">Описание</a>
                                 </li>
                                 <li>
                                     <a data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet"
-                                        aria-selected="false">Specification</a>
+                                        aria-selected="false">Характеристики</a>
                                 </li>
                                 <li>
                                     <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
-                                        aria-selected="false">Reviews (1)</a>
+                                        aria-selected="false">Отвызы (1)</a>
                                 </li>
                             </ul>
                         </div>
@@ -247,17 +209,9 @@
                                     <form action="#">
                                         <table>
                                             <tbody>
-                                                <tr>
-                                                    <td class="first_child">Compositions</td>
-                                                    <td>Polyester</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="first_child">Styles</td>
-                                                    <td>Girly</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="first_child">Properties</td>
-                                                    <td>Short Dress</td>
+                                                <tr th:each="feature : ${product.getFeatures()}">
+                                                    <td class="first_child" th:text="${feature.getFeatureName()}"></td>
+                                                    <td th:text="${feature.getValue()}"></td>
                                                 </tr>
                                             </tbody>
                                         </table>

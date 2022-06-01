@@ -30,6 +30,8 @@ public class ProductType {
     @NotNull
     private String nameCategory;
 
+    private String picture;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "productType")
     private Set<Product> products;
 

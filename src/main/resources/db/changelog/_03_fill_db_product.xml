@@ -77,6 +77,9 @@
             <column name="price" value="14899"/>
             <column name="product_type_id"
                     valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
+            <column name="picture" value="https://img.mvideo.ru/Pdb/30062444b.jpg"/>
+            <column name="price_without_discount" value="15899"/>
+
         </insert>
 
         <insert

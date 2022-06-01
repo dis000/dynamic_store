@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -42,6 +44,10 @@ public class Product {
     private Long amount;
 
     private String picture;
+
+    @Max(5)
+    @Min(1)
+    private Double rating;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore

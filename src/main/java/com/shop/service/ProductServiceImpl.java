@@ -6,7 +6,6 @@ import com.shop.dto.ValueProductFeatureDto;
 import com.shop.entity.Product;
 import com.shop.exception.ProductNotFoundException;
 import com.shop.mapper.ProductMapper;
-import com.shop.mapper.ProductShortMapper;
 import com.shop.mapper.ValueProductFeatureMapper;
 import com.shop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +24,15 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
     private final ValueProductFeatureMapper valueProductFeatureMapper;
-    private final ProductShortMapper productShortMapper;
+
 
     @Autowired
     public ProductServiceImpl(ProductRepository productRepository,
                               ProductMapper productMapper,
-                              ValueProductFeatureMapper valueProductFeatureMapper,
-                              ProductShortMapper productShortMapper) {
+                              ValueProductFeatureMapper valueProductFeatureMapper) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
         this.valueProductFeatureMapper = valueProductFeatureMapper;
-        this.productShortMapper = productShortMapper;
     }
 
     @Override
@@ -56,10 +53,8 @@ public class ProductServiceImpl implements ProductService {
 
         Set<Product> products = productRepository.findByName(name);
 
-        if (products.isEmpty())
-            throw new ProductNotFoundException("Продукт не найден");
 
-        return products.stream().map(productShortMapper::toDto).collect(toList());
+        return products.stream().map(productMapper::toShortDto).collect(toList());
     }
 
     @Override
@@ -69,6 +64,6 @@ public class ProductServiceImpl implements ProductService {
         if (products.isEmpty())
             throw new ProductNotFoundException("Продукт со скидкой не найден");
 
-        return products.stream().map(productShortMapper::toDto).collect(toList());
+        return products.stream().map(productMapper::toShortDto).collect(toList());
     }
 }

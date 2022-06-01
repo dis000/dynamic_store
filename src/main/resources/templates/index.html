@@ -131,50 +131,10 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="plant1" role="tabpanel">
                     <div class="row">
-
-
                         <div class="product_carousel product_column4 owl-carousel">
-
                             <div class="col-lg-3" th:each="product : ${productFirst}">
                                 <div class="product_items">
-                                    <article class="single_product">
-                                        <figure>
-                                            <div class="product_thumb">
-                                                <a class="primary_img" href="product-details.html"><img
-                                                        th:src="${product.getPicture()}" alt=""></a>
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart"><a href="cart.html"
-                                                                title="Add to cart"><i
-                                                                    class="icon-shopping-bag"></i></a></li>
-                                                        <li class="compare"><a href="#" title="Add to Compare"><i
-                                                                    class="icon-sliders"></i></a></li>
-                                                        <li class="wishlist"><a href="wishlist.html"
-                                                                title="Add to Wishlist"><i class="icon-heart"></i></a>
-                                                        </li>
-                                                        <li class="quick_button"><a href="#" data-toggle="modal"
-                                                                data-target="#modal_box" title="quick view"> <i
-                                                                    class="icon-eye"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <figcaption class="product_content">
-                                                <div class="product_rating">
-                                                    <ul>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <h4 class="product_name"><a href="product-details.html" th:text="${product.getName()}"></a></h4>
-                                                <div class="price_box">
-                                                    <span class="current_price" th:text="${product.getPrice()}+ ' ₽'"></span>
-                                                </div>
-                                            </figcaption>
-                                        </figure>
-                                    </article>
+                                    <article th:insert="/blocks/single-product :: article"> </article>
                                 </div>
                             </div>
                         </div>
@@ -185,44 +145,7 @@
                         <div class="product_carousel product_column4 owl-carousel">
                             <div class="col-lg-3" th:each="product : ${productSecond}">
                                 <div class="product_items">
-                                    <article class="single_product">
-                                        <figure>
-                                            <div class="product_thumb">
-                                                <a class="primary_img" href="product-details.html"><img
-                                                        th:src="${product.getPicture()}" alt=""></a>
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart"><a href="cart.html"
-                                                                title="Add to cart"><i
-                                                                    class="icon-shopping-bag"></i></a></li>
-                                                        <li class="compare"><a href="#" title="Add to Compare"><i
-                                                                    class="icon-sliders"></i></a></li>
-                                                        <li class="wishlist"><a href="wishlist.html"
-                                                                title="Add to Wishlist"><i class="icon-heart"></i></a>
-                                                        </li>
-                                                        <li class="quick_button"><a href="#" data-toggle="modal"
-                                                                data-target="#modal_box" title="quick view"> <i
-                                                                    class="icon-eye"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <figcaption class="product_content">
-                                                <div class="product_rating">
-                                                    <ul>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <h4 class="product_name"><a href="product-details.html" th:text="${product.getName()}"></a></h4>
-                                                <div class="price_box">
-                                                    <span class="current_price" th:text="${product.getPrice()}+ ' ₽'"></span>
-                                                </div>
-                                            </figcaption>
-                                        </figure>
-                                    </article>
+                                    <article th:insert="/blocks/single-product :: article"> </article>
                                 </div>
                             </div>
                         </div>
@@ -247,26 +170,7 @@
                 <div class="row">
                     <div class="product_carousel product_column5 owl-carousel">
                         <div class="col-lg-3" th:each="product : ${productsDiscount}">
-                            <article class="single_product">
-                                <figure>
-                                    <div class="product_thumb">
-                                        <a class="primary_img" href="product-details.html"><img
-                                                th:src="${product.getPicture()}" alt=""></a>
-                                        <div class="label_product">
-                                            <span class="label_sale" th:text="'-' + ${product.getDiscountPercent()} + '%'"></span>
-                                        </div>
-                                    </div>
-                                    <figcaption class="product_content">
-                                        <h4
-                                                class="product_name"><a href="product-details.html" th:text="${product.getName()}"></a>
-                                        </h4>
-                                        <div class="price_box">
-                                            <span class="current_price" th:text="${product.getPrice()}+ ' ₽'"></span>
-                                            <span class="old_price" th:text="${product.getPriceWithoutDiscount()}+ ' ₽'"></span>
-                                        </div>
-                                    </figcaption>
-                                </figure>
-                            </article>
+                            <article th:insert="/blocks/single-product :: article"> </article>
                         </div>
                     </div>
                 </div>

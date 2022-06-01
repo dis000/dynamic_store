@@ -8,6 +8,17 @@
 
 <div id="feed"></div>
 
+
+
+<script src="/assets/js/jquery-3.6.0.js"></script>
 <script src="assets/js/test.js" ></script>
+<script>
+
+
+    $.getJSON('http://localhost:8080/category', function(data) {
+        return('Your query count: ' + data.query);
+        // JSON result in `data` variable
+    });
+</script>
 </body>
 </html>

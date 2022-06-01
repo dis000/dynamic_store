@@ -38,7 +38,7 @@
 
                                 <select class="select_option" name="select" id="categori2">
                                     <option value="0">Все категории</option>
-                                    <option th:each="category : ${categories}" th:value="${category.nameCategory}" th:text="${category.nameCategory}"></option>
+                                    <option th:each="category : ${categories}" th:value="${category.getName}" th:text="${category.getName}"></option>
                                 </select>
                             </div>
                             <div class="search_box">

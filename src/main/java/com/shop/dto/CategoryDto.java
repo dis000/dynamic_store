@@ -6,5 +6,6 @@ import lombok.Getter;
 @Builder
 @Getter
 public class CategoryDto {
-    private final String nameCategory;
+    private final String name;
+    private final String picture;
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -40,78 +41,67 @@ public class ThymeLeafController {
     public static final BigDecimal ONE_HUNDRED = new BigDecimal(100);
 
 
-    @GetMapping("category")
+    @GetMapping
     public String getProductsByCategory(@RequestParam(required = false,defaultValue = "0") int p, Model model) {
 
         Pageable page = PageRequest.of(p,8);
+        Pageable pageForMenu = PageRequest.of(0,8);
 
-        List<CategoryDto> categories = productTypeService.getCategories(page);
+        List<CategoryDto> categories = productTypeService.getCategories(pageForMenu);
         model.addAttribute("categories", categories);
 
-
-
         List<ProductShortDto> productShortDtos0 = productTypeService.getShortByCategory("Видеокарты", page);
-
-        for (ProductShortDto productShortDto:
-             productShortDtos0) {
-            if (isNull(productShortDto.getPicture())) {
-                productShortDto.setPicture("/assets/img/product/product1.jpg");
-            }
-        }
-
-
         model.addAttribute("productFirst", productShortDtos0);
 
         List<ProductShortDto> productShortDtos1 = productTypeService.getShortByCategory("Процессоры", page);
-
-        for (ProductShortDto productShortDto:
-                productShortDtos1) {
-            if (isNull(productShortDto.getPicture())) {
-                productShortDto.setPicture("/assets/img/product/product2.jpg");
-            }
-        }
-
         model.addAttribute("productSecond", productShortDtos1);
 
         List<ProductShortDto> products = productService.getProductByDiscount(page);
-
-        products.forEach(productShortDto -> {
-            int percent;
-            BigDecimal price = productShortDto.getPrice();
-            BigDecimal priceWithoutDiscount = productShortDto.getPriceWithoutDiscount();
-            percent = priceWithoutDiscount.subtract(price).divide(priceWithoutDiscount, MathContext.DECIMAL32)
-                    .multiply(ONE_HUNDRED).intValue();
-
-            productShortDto.setDiscountPercent(percent);
-            if (isNull(productShortDto.getPicture())) {
-                productShortDto.setPicture("/assets/img/product/product2.jpg");
-            }
-        });
-
-
-
         model.addAttribute("productsDiscount", products);
 
         return "index";
     }
 
 
-
-    @GetMapping("product/id/{id}")
+    @GetMapping("product/{id}")
     public String getProductById(@PathVariable Long id, Model model) {
 
 
         ProductDto productDto = productService.getById(id);
-
-
         model.addAttribute("product", productDto);
-        Pageable page = PageRequest.of(0,8);
 
+        Pageable page = PageRequest.of(0,8);
         List<CategoryDto> categories = productTypeService.getCategories(page);
         model.addAttribute("categories", categories);
 
         return "product-details";
     }
+
+
+    @GetMapping("categories")
+    public String getCategories(Model model) {
+        Pageable page = PageRequest.of(0,8);
+        List<CategoryDto> categories = productTypeService.getCategories(page);
+        model.addAttribute("categories", categories);
+
+        return "categories";
+    }
+
+
+    @GetMapping("category/{category}")
+    public String getProductsByCategory(Model model, @NotNull @PathVariable String category) {
+
+        Pageable page = PageRequest.of(0,8);
+        List<CategoryDto> categories = productTypeService.getCategories(page);
+        model.addAttribute("categories", categories);
+
+
+        List<ProductShortDto> products = productTypeService.getShortByCategory(category, page);
+        model.addAttribute("products", products);
+
+        return "search";
+    }
+
 
     @GetMapping("search")
     public String searchProduct(Model model, @Param("name") String name) {
@@ -120,18 +110,7 @@ public class ThymeLeafController {
         List<CategoryDto> categories = productTypeService.getCategories(page);
         model.addAttribute("categories", categories);
 
-
         List<ProductShortDto> productsByName = productService.getProductsByName(name);
-
-
-        for (ProductShortDto productShortDto:
-                productsByName) {
-            if (isNull(productShortDto.getPicture())) {
-                productShortDto.setPicture("/assets/img/product/product1.jpg");
-            }
-        }
-
-
         model.addAttribute("products", productsByName);
 
         return "search";

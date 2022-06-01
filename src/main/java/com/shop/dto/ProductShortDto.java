@@ -11,12 +11,12 @@ import java.math.BigDecimal;
 @Builder
 @Getter
 @Setter
-//TODO в маппер добавить расчет скидки
 public class ProductShortDto {
     private final Long id;
     private final String name;
     private final BigDecimal price;
     private final BigDecimal priceWithoutDiscount;
-    private Integer discountPercent;
-    private String picture;
+    private final Integer discountPercent;
+    private final String picture;
+    private final Double rating;
 }

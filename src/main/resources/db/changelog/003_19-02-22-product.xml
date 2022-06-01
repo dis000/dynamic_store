@@ -19,6 +19,10 @@
                 <constraints nullable="false"/>
             </column>
             <column name="picture" type="VARCHAR"/>
+
+            <column name="rating" type="double" defaultValue="0">
+                <constraints nullable="false"/></column>
+
             <column name="product_type_id" type="BIGINT"/>
 
         </createTable>
