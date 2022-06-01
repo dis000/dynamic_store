@@ -21,5 +21,6 @@ public class ProductDto {
     private final String category;
     private final Double rating;
     private final List<ValueProductFeatureDto> features;
+    private final List<String> pictures;
 
 }

@@ -32,6 +32,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
           "left join fetch p.valueProductFeature vpf " +
           "left join fetch vpf.productFeature " +
           "left join fetch p.productType " +
+          "left join fetch p.productPictures " +
           "where  p.id = :id")
   Optional<Product> findProductById(@Param("id") Long id);
 

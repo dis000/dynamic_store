@@ -57,4 +57,8 @@ public class Product {
     @JsonIgnore
     private Set<ValueProductFeature> valueProductFeature;
 
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "product")
+    @JsonIgnore
+    private Set<ProductPicture> productPictures;
+
 }

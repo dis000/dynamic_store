@@ -53,7 +53,6 @@
     <!--header area end-->
 
 
-
     <!--product details start-->
     <div class="product_details mt-100 mb-100">
         <div class="container">
@@ -62,43 +61,18 @@
                     <div class="product-details-tab">
                         <div id="img-1" class="zoomWrapper single-zoom">
                             <a href="#">
-                                <img id="zoom1" th:src="${product.getPicture()}"
-                                    th:data-zoom-image="${product.getPicture()}" alt="big-1">
+                                <img id="zoom1" th:src="${productDetail.getPictures().get(0)}" th:height="600" th:width="600"
+                                     th:data-zoom-image="${productDetail.getPictures().get(0)}" alt="big-1">
                             </a>
                         </div>
                         <div class="single-zoom-thumb">
                             <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
-                                <li>
+                                <li th:each="picture : ${productDetail.getPictures()}" th:height="600" th:width="600">
                                     <a href="#" class="elevatezoom-gallery active" data-update=""
-                                       th:data-image="${product.getPicture()}"
-                                       th:data-zoom-image="${product.getPicture()}">
-                                        <img th:src="${product.getPicture()}" alt="zo-th-1"/>
+                                       th:data-image="${picture}"
+                                       th:data-zoom-image="${picture}" th:height="600" th:width="600">
+                                        <img th:src="${picture}" th:height="600" th:width="600" alt="zo-th-1"/>
                                     </a>
-
-                                </li>
-                                <li>
-                                    <a href="#" class="elevatezoom-gallery active" data-update=""
-                                        data-image="/assets/img/product/productbig1.jpg"
-                                        data-zoom-image="/assets/img/product/productbig1.jpg">
-                                        <img src="/assets/img/product/productbig1.jpg" alt="zo-th-1" />
-                                    </a>
-
-                                </li>
-                                <li>
-                                    <a href="#" class="elevatezoom-gallery active" data-update=""
-                                        data-image="/assets/img/product/productbig2.jpg"
-                                        data-zoom-image="/assets/img/product/productbig2.jpg">
-                                        <img src="/assets/img/product/productbig2.jpg" alt="zo-th-1" />
-                                    </a>
-
-                                </li>
-                                <li>
-                                    <a href="#" class="elevatezoom-gallery active" data-update=""
-                                        data-image="/assets/img/product/productbig3.jpg"
-                                        data-zoom-image="/assets/img/product/productbig3.jpg">
-                                        <img src="/assets/img/product/productbig3.jpg" alt="zo-th-1" />
-                                    </a>
-
                                 </li>
                             </ul>
                         </div>
@@ -108,29 +82,28 @@
                     <div class="product_d_right">
                         <form action="#">
 
-                            <h1 th:text="${product.getName()}"> </h1>
+                            <h1 th:text="${productDetail.getName()}"> </h1>
                             <div class="product_rating">
                                 <ul>
+                                    <li th:if="${productDetail.getRating < 0.5}"><a href="#"><i class="icon-star"></i></a></li>
+                                    <li th:if="${productDetail.getRating >= 0.5}"><a href="#"><i class="icon-star2"></i></a></li>
 
-                                    <li th:if="${product.getRating < 0.5}"><a href="#"><i class="icon-star"></i></a></li>
-                                    <li th:if="${product.getRating >= 0.5}"><a href="#"><i class="icon-star2"></i></a></li>
+                                    <li th:if="${productDetail.getRating < 1.5}"><a href="#"><i class="icon-star"></i></a></li>
+                                    <li th:if="${productDetail.getRating >= 1.5}"><a href="#"><i class="icon-star2"></i></a></li>
 
-                                    <li th:if="${product.getRating < 1.5}"><a href="#"><i class="icon-star"></i></a></li>
-                                    <li th:if="${product.getRating >= 1.5}"><a href="#"><i class="icon-star2"></i></a></li>
+                                    <li th:if="${productDetail.getRating < 2.5}"><a href="#"><i class="icon-star"></i></a></li>
+                                    <li th:if="${productDetail.getRating >= 2.5}"><a href="#"><i class="icon-star2"></i></a></li>
 
-                                    <li th:if="${product.getRating < 2.5}"><a href="#"><i class="icon-star"></i></a></li>
-                                    <li th:if="${product.getRating >= 2.5}"><a href="#"><i class="icon-star2"></i></a></li>
+                                    <li th:if="${productDetail.getRating < 3.5}"><a href="#"><i class="icon-star"></i></a></li>
+                                    <li th:if="${productDetail.getRating >= 3.5}"><a href="#"><i class="icon-star2"></i></a></li>
 
-                                    <li th:if="${product.getRating < 3.5}"><a href="#"><i class="icon-star"></i></a></li>
-                                    <li th:if="${product.getRating >= 3.5}"><a href="#"><i class="icon-star2"></i></a></li>
-
-                                    <li th:if="${product.getRating < 4.5}"><a href="#"><i class="icon-star"></i></a></li>
-                                    <li th:if="${product.getRating >= 4.5}"><a href="#"><i class="icon-star2"></i></a></li>
+                                    <li th:if="${productDetail.getRating < 4.5}"><a href="#"><i class="icon-star"></i></a></li>
+                                    <li th:if="${productDetail.getRating >= 4.5}"><a href="#"><i class="icon-star2"></i></a></li>
                                 </ul>
                             </div>
                             <div class="price_box">
-                                <span class="current_price" th:text="${product.getPrice()}+ ' ₽'"></span>
-                                <span class="old_price" th:if="${product.getPriceWithoutDiscount() != null}" th:text="${product.getPriceWithoutDiscount()}+ ' ₽'"></span>
+                                <span class="current_price" th:text="${productDetail.getPrice()}+ ' ₽'"></span>
+                                <span class="old_price" th:if="${productDetail.getPriceWithoutDiscount() != null}" th:text="${productDetail.getPriceWithoutDiscount()}+ ' ₽'"></span>
 
                             </div>
                             <div class="product_desc">
@@ -139,7 +112,7 @@
                                     neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et
                                     placerat vestibulum, metus nisi posuere nisl, in </p>
                             </div>
-                            <div class="product_variant color" th:each="feature : ${product.getFeatures()}" th:if="${feature.getFeatureName() == 'color'}">
+                            <div class="product_variant color" th:each="feature : ${productDetail.getFeatures()}" th:if="${feature.getFeatureName() == 'color'}">
                                 <h3>Available Options</h3>
                                 <label>color</label>
                                 <ul>
@@ -155,7 +128,7 @@
                                 <button class="button" type="submit">add to cart</button>
                             </div>
                             <div class="product_meta">
-                                <span>Категория: <a href="#" th:text="${product.getCategory()}">Clothing</a></span>
+                                <span>Категория: <a th:href="${'/model/category/' + productDetail.getCategory()}" th:text="${productDetail.getCategory()}">Clothing</a></span>
                             </div>
                         </form>
                     </div>
@@ -209,7 +182,7 @@
                                     <form action="#">
                                         <table>
                                             <tbody>
-                                                <tr th:each="feature : ${product.getFeatures()}">
+                                                <tr th:each="feature : ${productDetail.getFeatures()}">
                                                     <td class="first_child" th:text="${feature.getFeatureName()}"></td>
                                                     <td th:text="${feature.getValue()}"></td>
                                                 </tr>
@@ -308,257 +281,10 @@
             </div>
             <div class="row">
                 <div class="product_carousel product_column4 owl-carousel">
-                    <div class="col-lg-3">
-                        <article class="single_product">
-                            <figure>
-                                <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img
-                                            src="/assets/img/product/product1.jpg" alt=""></a>
-                                    <div class="label_product">
-                                        <span class="label_sale">-7%</span>
-                                    </div>
-                                    <div class="action_links">
-                                        <ul>
-                                            <li class="add_to_cart"><a href="cart.html" title="Add to cart"><i
-                                                        class="icon-shopping-bag"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i
-                                                        class="icon-sliders"></i></a></li>
-                                            <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
-                                                        class="icon-heart"></i></a></li>
-                                            <li class="quick_button"><a href="#" data-toggle="modal"
-                                                    data-target="#modal_box" title="quick view"> <i
-                                                        class="icon-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <figcaption class="product_content">
-                                    <div class="product_rating">
-                                        <ul>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="product_name"><a href="product-details.html">commodo augue nisi</a></h4>
-                                    <div class="price_box">
-                                        <span class="current_price">£69.00</span>
-                                        <span class="old_price">£74.00</span>
-                                    </div>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    </div>
-                    <div class="col-lg-3">
-                        <article class="single_product">
-                            <figure>
-                                <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img
-                                            src="/assets/img/product/product2.jpg" alt=""></a>
-                                    <div class="label_product">
-                                        <span class="label_sale">-9%</span>
-                                    </div>
-                                    <div class="action_links">
-                                        <ul>
-                                            <li class="add_to_cart"><a href="cart.html" title="Add to cart"><i
-                                                        class="icon-shopping-bag"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i
-                                                        class="icon-sliders"></i></a></li>
-                                            <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
-                                                        class="icon-heart"></i></a></li>
-                                            <li class="quick_button"><a href="#" data-toggle="modal"
-                                                    data-target="#modal_box" title="quick view"> <i
-                                                        class="icon-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <figcaption class="product_content">
-                                    <div class="product_rating">
-                                        <ul>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="product_name"><a href="product-details.html">eget sagittis</a></h4>
-                                    <div class="price_box">
-                                        <span class="current_price">£65.00</span>
-                                        <span class="old_price">£70.00</span>
-                                    </div>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    </div>
-                    <div class="col-lg-3">
-                        <article class="single_product">
-                            <figure>
-                                <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img
-                                            src="/assets/img/product/product3.jpg" alt=""></a>
-                                    <div class="label_product">
-                                        <span class="label_sale">-6%</span>
-                                    </div>
-                                    <div class="action_links">
-                                        <ul>
-                                            <li class="add_to_cart"><a href="cart.html" title="Add to cart"><i
-                                                        class="icon-shopping-bag"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i
-                                                        class="icon-sliders"></i></a></li>
-                                            <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
-                                                        class="icon-heart"></i></a></li>
-                                            <li class="quick_button"><a href="#" data-toggle="modal"
-                                                    data-target="#modal_box" title="quick view"> <i
-                                                        class="icon-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <figcaption class="product_content">
-                                    <div class="product_rating">
-                                        <ul>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="product_name"><a href="product-details.html">fringilla augue</a></h4>
-                                    <div class="price_box">
-                                        <span class="current_price">£68.00</span>
-                                        <span class="old_price">£75.00</span>
-                                    </div>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    </div>
-                    <div class="col-lg-3">
-                        <article class="single_product">
-                            <figure>
-                                <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img
-                                            src="/assets/img/product/product4.jpg" alt=""></a>
-                                    <div class="label_product">
-                                        <span class="label_sale">-5%</span>
-                                    </div>
-                                    <div class="action_links">
-                                        <ul>
-                                            <li class="add_to_cart"><a href="cart.html" title="Add to cart"><i
-                                                        class="icon-shopping-bag"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i
-                                                        class="icon-sliders"></i></a></li>
-                                            <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
-                                                        class="icon-heart"></i></a></li>
-                                            <li class="quick_button"><a href="#" data-toggle="modal"
-                                                    data-target="#modal_box" title="quick view"> <i
-                                                        class="icon-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <figcaption class="product_content">
-                                    <div class="product_rating">
-                                        <ul>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="product_name"><a href="product-details.html">massa massa</a></h4>
-                                    <div class="price_box">
-                                        <span class="current_price">£75.00</span>
-                                        <span class="old_price">£80.00</span>
-                                    </div>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    </div>
-                    <div class="col-lg-3">
-                        <article class="single_product">
-                            <figure>
-                                <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img
-                                            src="/assets/img/product/product5.jpg" alt=""></a>
-                                    <div class="label_product">
-                                        <span class="label_sale">-8%</span>
-                                    </div>
-                                    <div class="action_links">
-                                        <ul>
-                                            <li class="add_to_cart"><a href="cart.html" title="Add to cart"><i
-                                                        class="icon-shopping-bag"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i
-                                                        class="icon-sliders"></i></a></li>
-                                            <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
-                                                        class="icon-heart"></i></a></li>
-                                            <li class="quick_button"><a href="#" data-toggle="modal"
-                                                    data-target="#modal_box" title="quick view"> <i
-                                                        class="icon-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <figcaption class="product_content">
-                                    <div class="product_rating">
-                                        <ul>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="product_name"><a href="product-details.html">placerat vestibulum</a></h4>
-                                    <div class="price_box">
-                                        <span class="current_price">£65.00</span>
-                                        <span class="old_price">£70.00</span>
-                                    </div>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    </div>
-                    <div class="col-lg-3">
-                        <article class="single_product">
-                            <figure>
-                                <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img
-                                            src="/assets/img/product/product6.jpg" alt=""></a>
-                                    <div class="label_product">
-                                        <span class="label_sale">-9%</span>
-                                    </div>
-                                    <div class="action_links">
-                                        <ul>
-                                            <li class="add_to_cart"><a href="cart.html" title="Add to cart"><i
-                                                        class="icon-shopping-bag"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i
-                                                        class="icon-sliders"></i></a></li>
-                                            <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
-                                                        class="icon-heart"></i></a></li>
-                                            <li class="quick_button"><a href="#" data-toggle="modal"
-                                                    data-target="#modal_box" title="quick view"> <i
-                                                        class="icon-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <figcaption class="product_content">
-                                    <div class="product_rating">
-                                        <ul>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="product_name"><a href="product-details.html">Porro Cook</a></h4>
-                                    <div class="price_box">
-                                        <span class="current_price">£62.00</span>
-                                        <span class="old_price">£68.00</span>
-                                    </div>
-                                </figcaption>
-                            </figure>
-                        </article>
+                    <div class="col-lg-3" th:each="product : ${products}">
+                        <div class="product_items">
+                            <article th:insert="/blocks/single-product :: article"> </article>
+                        </div>
                     </div>
                 </div>
             </div>

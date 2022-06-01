@@ -68,11 +68,19 @@ public class ThymeLeafController {
 
 
         ProductDto productDto = productService.getById(id);
-        model.addAttribute("product", productDto);
+        model.addAttribute("productDetail", productDto);
+
+
 
         Pageable page = PageRequest.of(0,8);
         List<CategoryDto> categories = productTypeService.getCategories(page);
         model.addAttribute("categories", categories);
+
+
+        Pageable page2 = PageRequest.of(0,8);
+        List<ProductShortDto> similarProducts = productTypeService.getShortByCategory(productDto.getCategory(), page);
+
+        model.addAttribute("products", similarProducts);
 
         return "product-details";
     }
