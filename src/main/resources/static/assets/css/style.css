@@ -3998,7 +3998,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 /* 05. blog area css here */
 .blog_section {
-  background: #f2f5f1;
   padding: 88px 0 95px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {

@@ -8,8 +8,12 @@ spring:
     generate-ddl: true
     show-sql: true
     properties:
+      hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
+      hibernate.cache.use_second_level_cache: true
       hibernate:
-        format_sql: true
+        format_sql: false
+
+
     hibernate:
       ddl-auto: validate
   liquibase:

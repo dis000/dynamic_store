@@ -1,9 +1,13 @@
 package com.shop.controllers;
 
 import com.shop.dto.CategoryDto;
-import com.shop.dto.DoubleWrapper;
+import com.shop.dto.FullBlogDto;
 import com.shop.dto.ProductDto;
 import com.shop.dto.ProductShortDto;
+import com.shop.dto.ReviewCommentDto;
+import com.shop.dto.ShortBlogDto;
+import com.shop.service.BlogCommentService;
+import com.shop.service.BlogService;
 import com.shop.service.ProductService;
 import com.shop.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,19 +17,17 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static java.util.Objects.isNull;
 
 @Controller
 @RequestMapping("model")
@@ -33,10 +35,14 @@ public class ThymeLeafController {
 
     private final ProductTypeService productTypeService;
     private final ProductService productService;
+    private final BlogService blogService;
+    private final BlogCommentService blogCommentService;
     @Autowired
-    public ThymeLeafController(ProductTypeService productTypeService, ProductService productService) {
+    public ThymeLeafController(ProductTypeService productTypeService, ProductService productService, BlogService blogService, BlogCommentService blogCommentService) {
         this.productTypeService = productTypeService;
         this.productService = productService;
+        this.blogService = blogService;
+        this.blogCommentService = blogCommentService;
     }
     public static final BigDecimal ONE_HUNDRED = new BigDecimal(100);
 
@@ -58,6 +64,9 @@ public class ThymeLeafController {
 
         List<ProductShortDto> products = productService.getProductByDiscount(page);
         model.addAttribute("productsDiscount", products);
+
+        List<ShortBlogDto> blogsLimit = blogService.getBlogsWithLimit(6);
+        model.addAttribute("blogsLimit", blogsLimit);
 
         return "index";
     }
@@ -122,5 +131,62 @@ public class ThymeLeafController {
         model.addAttribute("products", productsByName);
 
         return "search";
+    }
+
+
+    @GetMapping("blog/{id}")
+    public String getBlogDetails(Model model, @PathVariable Long id) {
+
+        Pageable page = PageRequest.of(0,8);
+        List<CategoryDto> categories = productTypeService.getCategories(page);
+        model.addAttribute("categories", categories);
+
+        FullBlogDto fullBlog = blogService.getFullBlog(id);
+        model.addAttribute("fullBlog", fullBlog);
+
+        List<ShortBlogDto> blogsLimit = blogService.getBlogsByCategoryWithLimit(fullBlog.getCategory(), 3).stream()
+                .filter(blog ->
+                        !blog.getId().equals(fullBlog.getId())).collect(Collectors.toList());
+
+        model.addAttribute("blogsLimit", blogsLimit);
+
+        List<ShortBlogDto> newBlogs = blogService.getNewBlogs().stream()
+                .filter(blog ->
+                        !blog.getId().equals(fullBlog.getId())).collect(Collectors.toList());
+
+        model.addAttribute("newBlogs", newBlogs);
+
+        model.addAttribute("commentDto", new ReviewCommentDto());
+
+        return "blog-details";
+    }
+
+
+    @GetMapping("blogs")
+    public String getBlogDetails1(Model model, @RequestParam(value = "id", required = false, defaultValue = "1") int id) {
+
+        Pageable page = PageRequest.of(0,8);
+        List<CategoryDto> categories = productTypeService.getCategories(page);
+        model.addAttribute("categories", categories);
+
+        List<ShortBlogDto> newBlogs = blogService.getNewBlogs();
+
+        model.addAttribute("newBlogs", newBlogs);
+
+        Pageable page2 = PageRequest.of(id-1,6);
+
+        List<ShortBlogDto> blogs = blogService.getBlogs(page2);
+
+        model.addAttribute("blogs", blogs);
+
+        return "blog-fullwidth";
+    }
+
+
+    @PostMapping("/blog/{id}")
+    public RedirectView comment(@ModelAttribute("review") ReviewCommentDto reviewCommentDto, @PathVariable Integer id) {
+        blogCommentService.saveComment(reviewCommentDto, id);
+
+        return new RedirectView("/model/blog/" + id);
     }
 }
