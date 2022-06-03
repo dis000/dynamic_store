@@ -1,4 +1,4 @@
-package com.shop.dto;
+package com.shop.dto.comment;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Builder
 @ToString
-public class CommentDto {
+public class BlogCommentDto {
     private Long id;
 
     private final String author;

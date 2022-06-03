@@ -1,5 +1,6 @@
 package com.shop.service;
 
+import com.shop.dto.DtoWithPages;
 import com.shop.dto.FullBlogDto;
 import com.shop.dto.ShortBlogDto;
 import org.springframework.data.domain.Pageable;
@@ -17,5 +18,5 @@ public interface BlogService {
 
     List<ShortBlogDto> getNewBlogs();
 
-    List<ShortBlogDto> getBlogs(Pageable page);
+    DtoWithPages<List<ShortBlogDto>> getBlogs(Pageable page);
 }

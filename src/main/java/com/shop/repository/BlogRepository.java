@@ -2,6 +2,7 @@ package com.shop.repository;
 
 import com.shop.entity.Blog;
 import com.shop.entity.Product;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -29,9 +30,9 @@ public interface BlogRepository extends JpaRepository<Blog, Long> {
     @Query(nativeQuery = true, value = "select * from blog order by RANDOM() limit :limit")
     List<Blog> findBlogsWithLimit(@Param("limit") Integer limit);
 
-    @Query(nativeQuery = true, value = "select * from blog order by blog.date asc limit 4")
+    @Query(nativeQuery = true, value = "select * from blog order by blog.date desc limit 4")
     List<Blog> findNewBlogs();
 
-    @Query(nativeQuery = true, value = "select * from blog order by blog.date desc")
-    List<Blog> findAllBlogs(Pageable page);
+    @Query(value = "select b from Blog b order by b.date desc ")
+    Page<Blog> findAllBlogs(Pageable page);
 }

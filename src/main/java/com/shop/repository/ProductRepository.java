@@ -15,8 +15,8 @@ import java.util.Set;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-  @Query(value = "select distinct p from Product p where lower(p.name) like lower(CONCAT('%', :name, '%'))")
-  Set<Product> findByName(@Param("name") String name);
+  @Query(value = "select distinct p from Product p where lower(p.name) like lower(CONCAT('%', :name, '%')) order by p.price")
+  List<Product> findByName(@Param("name") String name);
 
 
   @Query(value = "select distinct p from Product p " +

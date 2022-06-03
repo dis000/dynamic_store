@@ -2,11 +2,14 @@ package com.shop.dto;
 
 
 
+import com.shop.dto.comment.BlogCommentDto;
+import com.shop.dto.comment.ProductCommentDto;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Builder
@@ -22,5 +25,5 @@ public class ProductDto {
     private final Double rating;
     private final List<ValueProductFeatureDto> features;
     private final List<String> pictures;
-
+    private final List<ProductCommentDto> productComment;
 }

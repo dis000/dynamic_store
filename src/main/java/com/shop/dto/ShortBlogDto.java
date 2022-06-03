@@ -23,4 +23,6 @@ public class ShortBlogDto {
     private final String subtitle;
 
     private final String picture;
+
+    private final Integer pages;
 }

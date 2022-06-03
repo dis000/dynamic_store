@@ -155,7 +155,7 @@
                                 </li>
                                 <li>
                                     <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
-                                        aria-selected="false">Отвызы (1)</a>
+                                        aria-selected="false" th:text="'Отзывы (' + ${productDetail.getProductComment().size()} + ')'"></a>
                                 </li>
                             </ul>
                         </div>
@@ -202,24 +202,33 @@
 
                             <div class="tab-pane fade" id="reviews" role="tabpanel">
                                 <div class="reviews_wrapper">
-                                    <h2>1 review for Donec eu furniture</h2>
-                                    <div class="reviews_comment_box">
+                                    <h2 th:text="${'Отзывы: ' + productDetail.getProductComment().size()}"></h2>
+                                    <div class="reviews_comment_box" th:each="comment : ${productDetail.getProductComment()}">
                                         <div class="comment_thmb">
-                                            <img src="/assets/img/blog/comment2.png.jpg" alt="">
+                                            <img src="/assets/img/user/no-avatar.png" width="50" height="50" alt="">
                                         </div>
                                         <div class="comment_text">
                                             <div class="reviews_meta">
                                                 <div class="star_rating">
                                                     <ul>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
+                                                        <li th:if="${comment.getRating < 0.5}"><a href="#"><i class="icon-star"></i></a></li>
+                                                        <li th:if="${comment.getRating >= 0.5}"><a href="#"><i class="icon-star2"></i></a></li>
+
+                                                        <li th:if="${comment.getRating < 1.5}"><a href="#"><i class="icon-star"></i></a></li>
+                                                        <li th:if="${comment.getRating >= 1.5}"><a href="#"><i class="icon-star2"></i></a></li>
+
+                                                        <li th:if="${comment.getRating < 2.5}"><a href="#"><i class="icon-star"></i></a></li>
+                                                        <li th:if="${comment.getRating >= 2.5}"><a href="#"><i class="icon-star2"></i></a></li>
+
+                                                        <li th:if="${comment.getRating < 3.5}"><a href="#"><i class="icon-star"></i></a></li>
+                                                        <li th:if="${comment.getRating >= 3.5}"><a href="#"><i class="icon-star2"></i></a></li>
+
+                                                        <li th:if="${comment.getRating < 4.5}"><a href="#"><i class="icon-star"></i></a></li>
+                                                        <li th:if="${comment.getRating >= 4.5}"><a href="#"><i class="icon-star2"></i></a></li>
                                                     </ul>
                                                 </div>
-                                                <p><strong>admin </strong>- September 12, 2018</p>
-                                                <span>roadthemes</span>
+                                                <p th:text="${comment.getAuthor() + ' - ' + comment.getDate()}" >th:text="${}" </p>
+                                                <span th:text="${comment.getText()}"></span>
                                             </div>
                                         </div>
 
@@ -228,35 +237,48 @@
                                         <h2>Add a review </h2>
                                         <p>Your email address will not be published. Required fields are marked </p>
                                     </div>
-                                    <div class="product_ratting mb-10">
-                                        <h3>Your rating</h3>
-                                        <ul>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                        </ul>
-                                    </div>
+
                                     <div class="product_review_form">
-                                        <form action="#">
+                                        <form action="#" th:action="${'/model/product/' + productDetail.getId()}" th:object="${commentDto}"
+                                              method="post">
+
+
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <label for="review_comment">Your review </label>
-                                                    <textarea name="comment" id="review_comment"></textarea>
+                                                    <label for="review_comment">Ваш отзыв </label>
+                                                    <textarea name="comment" maxlength="512" id="review_comment" th:field="*{comment}"></textarea>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6">
-                                                    <label for="author">Name</label>
-                                                    <input id="author" type="text">
-
+                                                    <label for="author">Имя</label>
+                                                    <input id="author" type="text" th:field="*{name}" maxlength="32">
                                                 </div>
                                                 <div class="col-lg-6 col-md-6">
-                                                    <label for="email">Email </label>
-                                                    <input id="email" type="text">
+                                                    <label for="author"> Оценка:</label>
+                                                    <input type="number" id="rating" name="rating" th:field="*{rating}"
+                                                           th:default="5" min="1" max="5">
                                                 </div>
                                             </div>
                                             <button type="submit">Submit</button>
                                         </form>
+
+
+                                 <!--       <form action="#" th:action="${'/model/blog/' + fullBlog.getId()}" th:object="${commentDto}"
+                                              method="post">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label for="review_comment">Комментарий </label>
+                                                    <p><textarea name="comment" id="review_comment"
+                                                                 th:field="*{comment}"></textarea></p>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4">
+                                                    <label for="author">Имя</label>
+                                                    <p><input id="author" type="text" th:field="*{name}"></p>
+                                                </div>
+                                            </div>
+                                            <button class="button" type="submit">Отправить</button>
+                                        </form>
+                                        -->
+
                                     </div>
                                 </div>
                             </div>
@@ -274,7 +296,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section_title">
-                        <h2>Related Products </h2>
+                        <h2>Похожие товары </h2>
                     </div>
                 </div>
             </div>

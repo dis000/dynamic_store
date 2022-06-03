@@ -1,6 +1,6 @@
 package com.shop.service;
 
-import com.shop.dto.ReviewCommentDto;
+import com.shop.dto.comment.BlogReviewCommentDto;
 import com.shop.entity.BlogComment;
 import com.shop.exception.BlogNotFoundException;
 import com.shop.repository.BlogCommentRepository;
@@ -16,19 +16,21 @@ public class BlogCommentServiceImpl implements BlogCommentService {
     private final BlogCommentRepository blogCommentRepository;
     private final BlogRepository blogRepository;
 
+
     @Autowired
     public BlogCommentServiceImpl(BlogCommentRepository blogCommentRepository, BlogRepository blogRepository) {
         this.blogCommentRepository = blogCommentRepository;
         this.blogRepository = blogRepository;
     }
 
+
     @Override
-    public void saveComment(ReviewCommentDto reviewCommentDto, Integer id) {
+    public void saveComment(BlogReviewCommentDto blogReviewCommentDto, Integer id) {
         BlogComment blogComment = BlogComment.builder()
                 .blog(blogRepository.findShortBlog(id.longValue()).orElseThrow(BlogNotFoundException::new))
-                .author(reviewCommentDto.getName())
+                .author(blogReviewCommentDto.getName())
                 .date(LocalDateTime.now())
-                .text(reviewCommentDto.getComment())
+                .text(blogReviewCommentDto.getComment())
                 .id(null)
                 .build();
 

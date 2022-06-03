@@ -18,6 +18,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -59,6 +60,10 @@ public class Product {
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "product")
     @JsonIgnore
+
     private Set<ProductPicture> productPictures;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "product")
+    @JsonIgnore
+    private List<ProductComment> productComment;
 
 }

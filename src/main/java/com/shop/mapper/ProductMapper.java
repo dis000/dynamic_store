@@ -3,7 +3,9 @@ package com.shop.mapper;
 import com.shop.dto.ProductDto;
 import com.shop.dto.ProductShortDto;
 import com.shop.dto.ValueProductFeatureDto;
+import com.shop.dto.comment.ProductCommentDto;
 import com.shop.entity.Product;
+import com.shop.entity.ProductComment;
 import com.shop.entity.ProductPicture;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -11,9 +13,8 @@ import org.mapstruct.Mapping;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static com.shop.controllers.ThymeLeafController.ONE_HUNDRED;
+import static com.shop.controllers.ProductController.ONE_HUNDRED;
 import static java.util.Objects.isNull;
 import static java.util.stream.Collectors.toList;
 
@@ -28,7 +29,8 @@ public interface ProductMapper {
     @Mapping(target = "discountPercent", expression = "java(calculatePercent(product))")
     @Mapping(source = "product.productType.nameCategory", target = "category")
     @Mapping(target = "pictures", expression = "java(rebuildProductPictures(product))")
-    ProductDto toDto(Product product, List<ValueProductFeatureDto> features);
+    @Mapping(source = "productComment", target = "productComment")
+    ProductDto toDto(Product product, List<ValueProductFeatureDto> features, List<ProductCommentDto> productComment);
 
 
     default Integer calculatePercent(Product product) {

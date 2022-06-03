@@ -1,6 +1,7 @@
 package com.shop.service;
 
-import com.shop.dto.CommentDto;
+import com.shop.dto.DtoWithPages;
+import com.shop.dto.comment.BlogCommentDto;
 import com.shop.dto.FullBlogDto;
 import com.shop.dto.ShortBlogDto;
 import com.shop.entity.Blog;
@@ -10,6 +11,7 @@ import com.shop.mapper.BlogMapper;
 import com.shop.mapper.CommentMapper;
 import com.shop.repository.BlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,7 @@ public class BlogServiceImpl implements BlogService {
     private final BlogMapper blogMapper;
     private final CommentMapper commentMapper;
 
+
     @Autowired
     public BlogServiceImpl(BlogRepository blogRepository, BlogMapper blogMapper, CommentMapper commentMapper) {
         this.blogRepository = blogRepository;
@@ -32,15 +35,17 @@ public class BlogServiceImpl implements BlogService {
         this.commentMapper = commentMapper;
     }
 
+
     @Override
     public FullBlogDto getFullBlog(Long id) {
         Blog blog = blogRepository.findFullBlog(id).orElseThrow(BlogNotFoundException::new);
 
-
-        List<CommentDto> comments = blog.getBlogComment().stream()
+        List<BlogCommentDto> comments = blog.getBlogComment().stream()
+                .sorted(Comparator.comparing(BlogComment::getDate))
                 .map(commentMapper::toDto).collect(toList());
         return blogMapper.toDto(blog, comments);
     }
+
 
     @Override
     public ShortBlogDto getShortBlog(Long id) {
@@ -49,6 +54,7 @@ public class BlogServiceImpl implements BlogService {
         return blogMapper.toShortDto(blog);
     }
 
+
     @Override
     public List<ShortBlogDto> getBlogsByCategoryWithLimit(String category, Integer limit) {
         List<Blog> blogs = blogRepository.findBlogsByCategoryWithLimit(category, limit);
@@ -56,11 +62,13 @@ public class BlogServiceImpl implements BlogService {
         return blogs.stream().map(blogMapper::toShortDto).collect(toList());
     }
 
+
     @Override
     public List<ShortBlogDto> getBlogsWithLimit(Integer limit) {
         List<Blog> blogs = blogRepository.findBlogsWithLimit(limit);
         return blogs.stream().map(blogMapper::toShortDto).collect(toList());
     }
+
 
     @Override
     public List<ShortBlogDto> getNewBlogs() {
@@ -68,9 +76,13 @@ public class BlogServiceImpl implements BlogService {
         return blogs.stream().map(blogMapper::toShortDto).collect(toList());
     }
 
+
     @Override
-    public List<ShortBlogDto> getBlogs(Pageable page) {
-        List<Blog> blogs = blogRepository.findAllBlogs(page);
-        return blogs.stream().map(blogMapper::toShortDto).collect(toList());
+    public DtoWithPages<List<ShortBlogDto>> getBlogs(Pageable page) {
+        Page<Blog> blogs = blogRepository.findAllBlogs(page);
+
+        List<ShortBlogDto> blogDtos = blogs.stream().map(blogMapper::toShortDto).collect(toList());
+
+        return new DtoWithPages<>(blogDtos, blogs.getTotalPages());
     }
 }

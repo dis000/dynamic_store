@@ -94,15 +94,27 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="pagination">
+                    <div class="pagination" th:if="${countPages > 1 && countPages != 0 && countPages > currentPage}">
                         <ul>
-                            <li class="current">1</li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li class="next"><a href="#">next</a></li>
-                            <li><a href="#">>></a></li>
+                            <li th:if="${currentPage > 3}"><a th:href="${'/model/blogs?p=1'}"><<</a></li>
+                            <li th:if="${currentPage > 2}"><a th:href="${'/model/blogs?p=' + (currentPage - 2)}" th:text="${currentPage} - 2"></a></li>
+                            <li th:if="${currentPage > 1}"><a th:href="${'/model/blogs?p=' + (currentPage - 1)}" th:text="${currentPage} - 1"></a></li>
+
+                            <li class="current" th:text="${currentPage}"></li>
+
+                            <li th:if="${currentPage < countPages - 1}"><a th:href="${'/model/blogs?p=' + (currentPage + 1)}" th:text="${currentPage} + 1"></a></li>
+                            <li th:if="${currentPage < countPages - 2}"><a th:href="${'/model/blogs?p=' + (currentPage + 2)}" th:text="${currentPage} + 2"></a></li>
+                            <li th:if="${currentPage < countPages - 3}"><a th:href="${'/model/blogs?p=' + (countPages - 1)}">>></a></li>
                         </ul>
                     </div>
+                    <div class="pagination" th:if="${currentPage >= countPages}">
+                        <ul>
+                            <li th:if="${countPages > 3}"><a href="/model/blogs?p=1"><<</a></li>
+                            <li th:if="${countPages > 2}"><a href="#" th:text="${countPages} - 2"></a></li>
+                            <li th:if="${countPages > 1}"><a href="#" th:text="${countPages} - 1"></a></li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>
