@@ -57,7 +57,6 @@ public class ProductController {
 
     @GetMapping
     public String getProductsByCategory(@RequestParam(required = false,defaultValue = "0") int p, Model model) {
-
         Pageable page = PageRequest.of(p,8);
         Pageable pageForMenu = PageRequest.of(0,8);
 
@@ -82,7 +81,6 @@ public class ProductController {
 
     @GetMapping("product/{id}")
     public String getProductById(@PathVariable Long id, Model model) {
-
         ProductDto productDto = productService.getById(id);
         model.addAttribute("productDetail", productDto);
 
@@ -112,7 +110,6 @@ public class ProductController {
 
     @GetMapping("category/{category}")
     public String getProductsByCategory(Model model, @NotNull @PathVariable String category) {
-
         Pageable page = PageRequest.of(0,8);
         List<CategoryDto> categories = productTypeService.getCategories(page);
         model.addAttribute("categories", categories);
@@ -121,13 +118,12 @@ public class ProductController {
         List<ProductShortDto> products = productTypeService.getShortByCategory(category, page);
         model.addAttribute("products", products);
 
-        return "search";
+        return "product-search";
     }
 
 
     @GetMapping("search")
     public String searchProduct(Model model, @RequestParam(value = "name") String name) {
-
         Pageable page = PageRequest.of(0, 8);
         List<CategoryDto> categories = productTypeService.getCategories(page);
         model.addAttribute("categories", categories);
@@ -135,7 +131,7 @@ public class ProductController {
         List<ProductShortDto> productsByName = productService.getProductsByName(name);
         model.addAttribute("products", productsByName);
 
-        return "search";
+        return "product-search";
     }
 
 

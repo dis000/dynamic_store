@@ -1,5 +1,6 @@
 package com.shop.dto;
 
+import com.shop.entity.BlogCategory;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 public class ShortBlogDto {
     private final Long id;
 
-    private final String category;
+    private final BlogCategory blogCategory;
 
     private final String author;
 
@@ -23,6 +24,4 @@ public class ShortBlogDto {
     private final String subtitle;
 
     private final String picture;
-
-    private final Integer pages;
 }

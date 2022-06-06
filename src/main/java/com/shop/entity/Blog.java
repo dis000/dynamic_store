@@ -28,9 +28,6 @@ public class Blog {
     private Long id;
 
     @NotNull
-    private String category;
-
-    @NotNull
     private String author;
 
     private LocalDateTime date;
@@ -38,7 +35,6 @@ public class Blog {
     private String header;
 
     private String subtitle;
-
 
     private String picture;
 
@@ -49,5 +45,9 @@ public class Blog {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "blog")
     @JsonIgnore
     private Set<BlogDetails> blogDetails;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    private BlogCategory blogCategory;
 
 }

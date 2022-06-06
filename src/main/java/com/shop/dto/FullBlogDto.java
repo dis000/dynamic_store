@@ -1,6 +1,7 @@
 package com.shop.dto;
 
 import com.shop.dto.comment.BlogCommentDto;
+import com.shop.entity.BlogCategory;
 import com.shop.entity.BlogDetails;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +17,7 @@ public class FullBlogDto {
 
     private final Long id;
 
-    private final String category;
+    private final BlogCategory blogCategory;
 
     private final String author;
 

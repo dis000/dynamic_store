@@ -14,6 +14,12 @@ public interface BlogService {
 
     List<ShortBlogDto> getBlogsByCategoryWithLimit(String category, Integer limit);
 
+
+
+    DtoWithPages<List<ShortBlogDto>> getBlogsByName(String name, Pageable pageable);
+
+    DtoWithPages<List<ShortBlogDto>> getBlogsByCategory(String category, Pageable pageable);
+
     List<ShortBlogDto> getBlogsWithLimit(Integer limit);
 
     List<ShortBlogDto> getNewBlogs();

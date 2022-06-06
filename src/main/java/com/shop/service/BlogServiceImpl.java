@@ -64,6 +64,24 @@ public class BlogServiceImpl implements BlogService {
 
 
     @Override
+    public DtoWithPages<List<ShortBlogDto>> getBlogsByName(String name, Pageable pageable) {
+        Page<Blog> blogs = blogRepository.findBlogsByName(name, pageable);
+
+        List<ShortBlogDto> blogDtos = blogs.stream().map(blogMapper::toShortDto).collect(toList());
+        return new DtoWithPages<>(blogDtos, blogs.getTotalPages());
+    }
+
+
+    @Override
+    public DtoWithPages<List<ShortBlogDto>> getBlogsByCategory(String category, Pageable pageable) {
+        Page<Blog> blogs = blogRepository.findBlogsByCategory(category, pageable);
+
+        List<ShortBlogDto> blogDtos = blogs.stream().map(blogMapper::toShortDto).collect(toList());
+        return new DtoWithPages<>(blogDtos, blogs.getTotalPages());
+    }
+
+
+    @Override
     public List<ShortBlogDto> getBlogsWithLimit(Integer limit) {
         List<Blog> blogs = blogRepository.findBlogsWithLimit(limit);
         return blogs.stream().map(blogMapper::toShortDto).collect(toList());

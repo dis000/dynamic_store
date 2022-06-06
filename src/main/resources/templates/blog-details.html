@@ -28,17 +28,12 @@
     <link rel="stylesheet" th:href="@{/assets/css/slinky.menu.css}">
     <!--plugins css-->
     <link rel="stylesheet" th:href="@{/assets/css/plugins.css}">
-
     <!-- Main Style CSS -->
     <link rel="stylesheet" th:href="@{/assets/css/style.css}">
-
     <!--modernizr min js here-->
     <script th:src="@{/assets/js/vendor/modernizr-3.7.1.min.js}"></script>
 </head>
-
 <body>
-
-
 <!--header area start-->
 
 <!--offcanvas menu area start-->
@@ -46,14 +41,10 @@
 
 <div th:insert="/blocks/constructor-offcanvas-menu :: div"> </div>
 
-
-
 <header th:insert="/blocks/constructor-header-blog :: header"> </header>
 <!--offcanvas menu area end-->
 
 <!--header area end-->
-
-
 
     <!--blog body area start-->
     <div class="blog_details">
@@ -68,7 +59,7 @@
                                     <h3 class="post_title" th:text="${fullBlog.getHeader()}"></h3>
                                     <div class="blog_meta">
                                         <p>Автор : <a href="#" th:text="${fullBlog.getAuthor()}"></a> / Дата : <a href="#" th:text="${fullBlog.getDate()}"></a> / Категория
-                                            : <a href="#" th:text="${fullBlog.getCategory()}"></a></p>
+                                            : <a th:href="${'/model/blogs/search/category?s=' + fullBlog.getBlogCategory().getNameCategory()}" th:text="${fullBlog.getBlogCategory().getNameCategory()}"></a></p>
                                     </div>
                                 </div>
                                 <div class="blog_thumb">
@@ -173,44 +164,7 @@
     </div>
     <!--blog section area end-->
 
-    <!--brand area start-->
-    <div class="brand_area color_five">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="brand_container owl-carousel">
-                        <div class="single_brand">
-                            <a href="#"><img src="/assets/img/brand/brand1.png" alt=""></a>
-                        </div>
-                        <div class="single_brand">
-                            <a href="#"><img src="/assets/img/brand/brand2.png" alt=""></a>
-                        </div>
-                        <div class="single_brand">
-                            <a href="#"><img src="/assets/img/brand/brand3.png" alt=""></a>
-                        </div>
-                        <div class="single_brand">
-                            <a href="#"><img src="/assets/img/brand/brand4.png" alt=""></a>
-                        </div>
-                        <div class="single_brand">
-                            <a href="#"><img src="/assets/img/brand/brand5.png" alt=""></a>
-                        </div>
-                        <div class="single_brand">
-                            <a href="#"><img src="/assets/img/brand/brand6.png" alt=""></a>
-                        </div>
-                        <div class="single_brand">
-                            <a href="#"><img src="/assets/img/brand/brand2.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--brand area end-->
-
-
 <footer th:insert="/blocks/footer :: footer"> </footer>
-
-
 
 <!-- JS
 ============================================ -->
@@ -240,12 +194,8 @@
 <script th:src="@{/assets/js/slinky.menu.js}"></script>
 <!-- Plugins JS -->
 <script th:src="@{/assets/js/plugins.js}"></script>
-
 <!-- Main JS -->
 <script th:src="@{/assets/js/main.js}"></script>
-
-
-
 <script>
     $('#submit-form').on('click', function() {
         var form = $('#tweet-form');
@@ -263,8 +213,5 @@
     })
 
 </script>
-
-
 </body>
-
 </html>

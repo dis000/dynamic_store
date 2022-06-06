@@ -5,6 +5,8 @@ import com.shop.dto.DtoWithPages;
 import com.shop.dto.FullBlogDto;
 import com.shop.dto.ShortBlogDto;
 import com.shop.dto.comment.BlogReviewCommentDto;
+import com.shop.entity.BlogCategory;
+import com.shop.service.BlogCategoryService;
 import com.shop.service.BlogCommentService;
 import com.shop.service.BlogService;
 import com.shop.service.ProductTypeService;
@@ -32,17 +34,20 @@ public class BlogController {
     private final ProductTypeService productTypeService;
     private final BlogService blogService;
     private final BlogCommentService blogCommentService;
+    private final BlogCategoryService blogCategoryService;
 
 
     @Autowired
     public BlogController(
             ProductTypeService productTypeService,
             BlogService blogService,
-            BlogCommentService blogCommentService
+            BlogCommentService blogCommentService,
+            BlogCategoryService blogCategoryService
     ) {
         this.productTypeService = productTypeService;
         this.blogService = blogService;
         this.blogCommentService = blogCommentService;
+        this.blogCategoryService = blogCategoryService;
     }
 
 
@@ -53,12 +58,15 @@ public class BlogController {
         List<CategoryDto> categories = productTypeService.getCategories(page);
         model.addAttribute("categories", categories);
 
+        List<BlogCategory> blogCategories = blogCategoryService.getAllCategories();
+        model.addAttribute("blogCategories", blogCategories);
+
         FullBlogDto fullBlog = blogService.getFullBlog(id);
         model.addAttribute("fullBlog", fullBlog);
 
-        List<ShortBlogDto> blogsLimit = blogService.getBlogsByCategoryWithLimit(fullBlog.getCategory(), 3).stream()
-                .filter(blog ->
-                        !blog.getId().equals(fullBlog.getId())).collect(Collectors.toList());
+        List<ShortBlogDto> blogsLimit = blogService.getBlogsByCategoryWithLimit(fullBlog.getBlogCategory().getNameCategory(), 3).stream()
+                .filter(blog -> !blog.getId().equals(fullBlog.getId()))
+                .collect(Collectors.toList());
 
         model.addAttribute("blogsLimit", blogsLimit);
 
@@ -81,11 +89,14 @@ public class BlogController {
         List<CategoryDto> categories = productTypeService.getCategories(page);
         model.addAttribute("categories", categories);
 
+        List<BlogCategory> blogCategories = blogCategoryService.getAllCategories();
+        model.addAttribute("blogCategories", blogCategories);
+
         List<ShortBlogDto> newBlogs = blogService.getNewBlogs();
 
         model.addAttribute("newBlogs", newBlogs);
 
-        Pageable page2 = PageRequest.of(p-1,2, Sort.by("date"));
+        Pageable page2 = PageRequest.of(p-1,6, Sort.by("date"));
 
         DtoWithPages<List<ShortBlogDto>> blogs = blogService.getBlogs(page2);
 
@@ -98,9 +109,71 @@ public class BlogController {
 
 
     @PostMapping("/blog/{id}")
-    public RedirectView comment(@ModelAttribute("review") BlogReviewCommentDto blogReviewCommentDto, @PathVariable Integer id) {
+    public RedirectView createCommentInBlog(@ModelAttribute("review") BlogReviewCommentDto blogReviewCommentDto, @PathVariable Integer id) {
         blogCommentService.saveComment(blogReviewCommentDto, id);
 
         return new RedirectView("/model/blog/" + id);
+    }
+
+
+    @GetMapping("/blogs/search/name")
+    public String searchBlogsByName(
+            @ModelAttribute("review") BlogReviewCommentDto blogReviewCommentDto,
+            @RequestParam(value = "s") String name,
+            Model model,
+            @RequestParam(value = "p", required = false, defaultValue = "1") Integer p
+    ) {
+        model.addAttribute("search", name);
+
+        List<CategoryDto> categories = productTypeService.getCategories(PageRequest.of(0,8));
+        model.addAttribute("categories", categories);
+
+        List<BlogCategory> blogCategories = blogCategoryService.getAllCategories();
+        model.addAttribute("blogCategories", blogCategories);
+
+        List<ShortBlogDto> newBlogs = blogService.getNewBlogs();
+
+        model.addAttribute("newBlogs", newBlogs);
+
+        Pageable page = PageRequest.of(p-1,6, Sort.by("date"));
+
+        DtoWithPages<List<ShortBlogDto>> blogs = blogService.getBlogsByName(name, page);
+
+        model.addAttribute("blogs", blogs.getDto());
+        model.addAttribute("countPages", blogs.getPage() + 1);
+        model.addAttribute("currentPage", page.getPageNumber() + 1);
+
+        return "blog-search";
+    }
+
+
+    @GetMapping("/blogs/search/category")
+    public String searchBlogsByName1(
+            @ModelAttribute("review") BlogReviewCommentDto blogReviewCommentDto,
+            @RequestParam(value = "s") String category,
+            Model model,
+            @RequestParam(value = "p", required = false, defaultValue = "1") Integer p
+    ) {
+        model.addAttribute("search", category);
+
+        List<CategoryDto> categories = productTypeService.getCategories(PageRequest.of(0,8));
+        model.addAttribute("categories", categories);
+
+        List<BlogCategory> blogCategories = blogCategoryService.getAllCategories();
+        model.addAttribute("blogCategories", blogCategories);
+
+        List<ShortBlogDto> newBlogs = blogService.getNewBlogs();
+
+        model.addAttribute("newBlogs", newBlogs);
+
+        Pageable page = PageRequest.of(p-1,6, Sort.by("date"));
+
+        DtoWithPages<List<ShortBlogDto>> blogs = blogService.getBlogsByCategory(category, page);
+
+        model.addAttribute("blogs", blogs.getDto());
+        model.addAttribute("countPages", blogs.getPage() + 1);
+        model.addAttribute("currentPage", page.getPageNumber() + 1);
+
+        return "blog-search";
     }
 }
