@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Lukani – Plant and Flower Shop eCommerce HTML Template </title>
+    <title>pc comp</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -41,10 +41,7 @@
     <!--header area start-->
 
     <!--offcanvas menu area start-->
-    <div class="off_canvars_overlay">
 
-    </div>
-    <div th:insert="/blocks/constructor-offcanvas-menu :: div"> </div>
 
 
 
@@ -76,7 +73,6 @@
                             <img src="/assets/img/about/shipping2.png" alt="">
                         </div>
                         <div class="shipping_content">
-                            <button onclick="myFunction()">Click me</button>
                             <h3>Безопасная оплата</h3>
                             <p>Можете не беспокоиться за вашу карту, <br> все данные зашифрованы</p>
                         </div>
@@ -114,13 +110,13 @@
                                 <li>
                                     <a class="active" data-toggle="tab" href="#plant1" role="tab" aria-controls="plant1"
                                         aria-selected="true">
-                                        Процессоры
+                                        Видеокарты
                                     </a>
                                 </li>
                                 <li>
                                     <a data-toggle="tab" href="#plant2" role="tab" aria-controls="plant2"
                                         aria-selected="false">
-                                        Видеокарты
+                                        Процессоры
                                     </a>
                                 </li>
                             </ul>
@@ -246,24 +242,8 @@
 
     <!-- Main JS -->
     <script th:src="@{/assets/js/main.js}"></script>
-
-
+    <script th:src="@{/assets/js/basket.js}"></script>
     <script th:src="@{/assets/js/js.cookie.js}"></script>
-    <script>
-        function myFunction() {
-
-
-            var arr = Cookies.get('foo');
-            var array = JSON.parse("[" + string + "]");
-            alert(Array.from(arr))
-
-
-
-            alert("This alert box was called with the onload event" + Cookies.get('foo'));
-
-        }
-    </script>
-
 </body>
 
 </html>

@@ -54,8 +54,7 @@ public class BlogController {
     @GetMapping("blog/{id}")
     public String getBlogDetails(Model model, @PathVariable Long id) {
 
-        Pageable page = PageRequest.of(0, 8);
-        List<CategoryDto> categories = productTypeService.getCategories(page);
+        List<CategoryDto> categories = productTypeService.getCategories();
         model.addAttribute("categories", categories);
 
         List<BlogCategory> blogCategories = blogCategoryService.getAllCategories();
@@ -85,8 +84,7 @@ public class BlogController {
     @GetMapping("blogs")
     public String getBlogDetails1(Model model, @RequestParam(value = "p", required = false, defaultValue = "1") Integer p) {
 
-        Pageable page = PageRequest.of(0,8);
-        List<CategoryDto> categories = productTypeService.getCategories(page);
+        List<CategoryDto> categories = productTypeService.getCategories();
         model.addAttribute("categories", categories);
 
         List<BlogCategory> blogCategories = blogCategoryService.getAllCategories();
@@ -125,7 +123,7 @@ public class BlogController {
     ) {
         model.addAttribute("search", name);
 
-        List<CategoryDto> categories = productTypeService.getCategories(PageRequest.of(0,8));
+        List<CategoryDto> categories = productTypeService.getCategories();
         model.addAttribute("categories", categories);
 
         List<BlogCategory> blogCategories = blogCategoryService.getAllCategories();
@@ -156,7 +154,7 @@ public class BlogController {
     ) {
         model.addAttribute("search", category);
 
-        List<CategoryDto> categories = productTypeService.getCategories(PageRequest.of(0,8));
+        List<CategoryDto> categories = productTypeService.getCategories();
         model.addAttribute("categories", categories);
 
         List<BlogCategory> blogCategories = blogCategoryService.getAllCategories();

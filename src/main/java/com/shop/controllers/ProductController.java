@@ -1,5 +1,6 @@
 package com.shop.controllers;
 
+import com.shop.dto.BasketProductDto;
 import com.shop.dto.CategoryDto;
 import com.shop.dto.ProductDto;
 import com.shop.dto.ProductShortDto;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +28,12 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+
+import static java.util.Objects.isNull;
 
 @Controller
 @RequestMapping("model")
@@ -58,9 +65,8 @@ public class ProductController {
     @GetMapping
     public String getProductsByCategory(@RequestParam(required = false,defaultValue = "0") int p, Model model) {
         Pageable page = PageRequest.of(p,8);
-        Pageable pageForMenu = PageRequest.of(0,8);
 
-        List<CategoryDto> categories = productTypeService.getCategories(pageForMenu);
+        List<CategoryDto> categories = productTypeService.getCategories();
         model.addAttribute("categories", categories);
 
         List<ProductShortDto> productShortDtos0 = productTypeService.getShortByCategory("Видеокарты", page);
@@ -85,10 +91,9 @@ public class ProductController {
         model.addAttribute("productDetail", productDto);
 
         Pageable page = PageRequest.of(0,8);
-        List<CategoryDto> categories = productTypeService.getCategories(page);
+        List<CategoryDto> categories = productTypeService.getCategories();
         model.addAttribute("categories", categories);
 
-        Pageable page2 = PageRequest.of(0,8);
         List<ProductShortDto> similarProducts = productTypeService.getShortByCategory(productDto.getCategory(), page);
         model.addAttribute("products", similarProducts);
 
@@ -100,8 +105,7 @@ public class ProductController {
 
     @GetMapping("categories")
     public String getCategories(Model model) {
-        Pageable page = PageRequest.of(0,8);
-        List<CategoryDto> categories = productTypeService.getCategories(page);
+        List<CategoryDto> categories = productTypeService.getCategories();
         model.addAttribute("categories", categories);
 
         return "categories";
@@ -111,7 +115,7 @@ public class ProductController {
     @GetMapping("category/{category}")
     public String getProductsByCategory(Model model, @NotNull @PathVariable String category) {
         Pageable page = PageRequest.of(0,8);
-        List<CategoryDto> categories = productTypeService.getCategories(page);
+        List<CategoryDto> categories = productTypeService.getCategories();
         model.addAttribute("categories", categories);
 
 
@@ -124,8 +128,7 @@ public class ProductController {
 
     @GetMapping("search")
     public String searchProduct(Model model, @RequestParam(value = "name") String name) {
-        Pageable page = PageRequest.of(0, 8);
-        List<CategoryDto> categories = productTypeService.getCategories(page);
+        List<CategoryDto> categories = productTypeService.getCategories();
         model.addAttribute("categories", categories);
 
         List<ProductShortDto> productsByName = productService.getProductsByName(name);
@@ -142,5 +145,18 @@ public class ProductController {
         productCommentService.saveComment(productReviewCommentDto, id);
 
         return new RedirectView("/model/product/" + id);
+    }
+
+
+    @GetMapping("basket")
+    public String checkBasket(@CookieValue(name = "basket", required = false) String basket, Model model) {
+
+        List<CategoryDto> categories = productTypeService.getCategories();
+        model.addAttribute("categories", categories);
+
+        List<BasketProductDto> shortProducts = productService.getProductsForBasketByIds(basket);
+        model.addAttribute("basketProducts", shortProducts);
+
+        return "basket";
     }
 }

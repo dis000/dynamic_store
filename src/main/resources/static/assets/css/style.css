@@ -544,7 +544,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   opacity: 0;
   visibility: hidden;
   cursor: crosshair;
-  background: #222222;
   top: 0;
 }
 .off_canvars_overlay.active {

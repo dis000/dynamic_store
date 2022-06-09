@@ -6,6 +6,12 @@
             <div class="label_product" th:if="${product.getDiscountPercent() != null}">
                 <span class="label_sale" th:text="'-' + ${product.getDiscountPercent()} + '%'"></span>
             </div>
+            <div class="action_links">
+                <ul>
+                    <li class="add_to_cart"><a th:onclick="'javascript:addItemToBasket('+ ${product.getId()} +');'" title="Добавить в корзину"><i
+                            class="icon-shopping-bag" id="icon-shopping-bag"></i></a></li>
+                </ul>
+            </div>
         </div>
         <figcaption class="product_content">
             <div class="product_rating">

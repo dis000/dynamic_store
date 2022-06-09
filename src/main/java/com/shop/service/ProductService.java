@@ -1,5 +1,6 @@
 package com.shop.service;
 
+import com.shop.dto.BasketProductDto;
 import com.shop.dto.ProductDto;
 import com.shop.dto.ProductShortDto;
 import org.springframework.data.domain.Pageable;
@@ -14,5 +15,6 @@ public interface ProductService {
 
      List<ProductShortDto> getProductByDiscount(Pageable page);
 
+     List<BasketProductDto> getProductsForBasketByIds(String ids);
 
 }

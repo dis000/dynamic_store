@@ -40,8 +40,8 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     }
 
     @Override
-    public List<CategoryDto> getCategories(Pageable page) {
-        List<CategoryDto> categoryDtos = productTypeRepository.findAll(page).stream()
+    public List<CategoryDto> getCategories() {
+        List<CategoryDto> categoryDtos = productTypeRepository.findAll().stream()
                 .map(productTypeMapper::toDto).collect(toList());
 
         if (categoryDtos.isEmpty())

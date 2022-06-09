@@ -1,0 +1,246 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>pc comp</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link th:href="@{/assets/img/favicon.ico}" rel="shortcut icon" type="image/x-icon" >
+    <!-- CSS
+    ========================= -->
+    <!--bootstrap min css-->
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <!--owl carousel min css-->
+    <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.min.css}">
+    <!--slick min css-->
+    <link rel="stylesheet" th:href="@{/assets/css/slick.css}">
+    <!--magnific popup min css-->
+    <link rel="stylesheet" th:href="@{/assets/css/magnific-popup.css}">
+    <!--font awesome css-->
+    <link rel="stylesheet" th:href="@{/assets/css/font.awesome.css}">
+    <!--animate css-->
+    <link rel="stylesheet" th:href="@{/assets/css/animate.css}">
+    <!--jquery ui min css-->
+    <link rel="stylesheet" th:href="@{/assets/css/jquery-ui.min.css}">
+    <!--slinky menu css-->
+    <link rel="stylesheet" th:href="@{/assets/css/slinky.menu.css}">
+    <!--plugins css-->
+    <link rel="stylesheet" th:href="@{/assets/css/plugins.css}">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+
+    <!--modernizr min js here-->
+    <script th:src="@{/assets/js/vendor/modernizr-3.7.1.min.js}"></script>
+
+
+</head>
+
+<body onload="setTotalPriceAtStart();">
+
+
+<!--header area start-->
+<header th:insert="/blocks/constructor-header-none :: header"> </header>
+<!--header area end-->
+
+    <!--shopping cart area start -->
+    <div class="shopping_cart_area mt-100">
+        <div class="container">
+            <form action="#">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table_desc">
+                            <div class="cart_page table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="product_remove">Удалить</th>
+                                            <th class="product_thumb">Фото</th>
+                                            <th class="product_name">Товар</th>
+                                            <th class="product-price">Цена</th>
+                                            <th class="product_quantity">Количество</th>
+                                            <th class="product_total">Итого</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="basketProduct : ${basketProducts}">
+                                        <td class="product_remove"><a
+                                                th:onclick="'javascript:removeFullItemFromBasket('+ ${basketProduct.getProductShortDto().getId()} +');'"><i
+                                                class="fa fa-trash-o"></i></a>
+                                        </td>
+                                        <td class="product_thumb"><a
+                                                th:href="${'/model/product/' + basketProduct.getProductShortDto().getId()}"><img
+                                                th:src="${basketProduct.getProductShortDto().getPicture()}" alt=""></a>
+                                        </td>
+                                        <td class="product_name"><a
+                                                th:href="${'/model/product/' + basketProduct.getProductShortDto().getId()}"
+                                                th:text="${basketProduct.getProductShortDto().getName()}"></a></td>
+                                        <td class="product-price"
+                                            th:text="${basketProduct.getProductShortDto().getPrice()}+ ' ₽'"></td>
+                                        <td class="product_quantity">
+
+
+                                            <label></label>
+                                            <button type="button" class="btn btn-primary"
+                                                    th:onclick="'javascript:minusCount('+ ${basketProduct.getProductShortDto().getId()} + ', ' + ${basketProduct.getProductShortDto().getPrice()} +');'">
+                                                <</button>
+                                            <input min="0" max="100" th:value="${basketProduct.getHowMany()}" th:id="${'count' + basketProduct.getProductShortDto().getId()}"
+                                                   type="text">
+                                            <button type="button" class="btn btn-primary"
+                                                    th:onclick="'javascript:plusCount('+ ${basketProduct.getProductShortDto().getId()} + ', ' + ${basketProduct.getProductShortDto().getPrice()} +');'">></button>
+                                        </td>
+                                        <td class="product_total"
+                                            th:id="${'total' + basketProduct.getProductShortDto().getId()}"
+                                            th:text="${basketProduct.getProductShortDto().getPrice() * basketProduct.getHowMany()}+ ' ₽'">
+                                        </td>
+
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="cart_submit">
+                                <button type="button" onclick="removeAllItemsFromBasket()">Очистить корзину</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--coupon code area start-->
+                <div class="coupon_area">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="coupon_code right">
+                                <h3>ИТОГО:</h3>
+                                <div class="coupon_inner">
+                                    <div class="cart_subtotal">
+                                        <p>Общая сумма</p>
+                                        <p class="cart_amount" id="totalPrice"></p>
+                                    </div>
+                                    <div class="checkout_btn">
+                                        <a href="#">Оформить заказ</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--coupon code area end-->
+            </form>
+        </div>
+    </div>
+    <!--shopping cart area end -->
+
+    <!--footer area start-->
+    <footer th:insert="/blocks/footer :: footer"> </footer>
+    <!--footer area end-->
+
+
+    <!-- JS
+============================================ -->
+    <!--jquery min js-->
+    <script th:src="@{/assets/js/vendor/jquery-3.4.1.min.js}"></script>
+    <!--popper min js-->
+    <script th:src="@{/assets/js/popper.js}"></script>
+    <!--bootstrap min js-->
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <!--owl carousel min js-->
+    <script th:src="@{/assets/js/owl.carousel.min.js}"></script>
+    <!--slick min js-->
+    <script th:src="@{/assets/js/slick.min.js}"></script>
+    <!--magnific popup min js-->
+    <script th:src="@{/assets/js/jquery.magnific-popup.min.js}"></script>
+    <!--counterup min js-->
+    <script th:src="@{/assets/js/jquery.counterup.min.js}"></script>
+    <!--jquery countdown min js-->
+    <script th:src="@{/assets/js/jquery.countdown.js}"></script>
+    <!--jquery ui min js-->
+    <script th:src="@{/assets/js/jquery.ui.js}"></script>
+    <!--jquery elevatezoom min js-->
+    <script th:src="@{/assets/js/jquery.elevatezoom.js}"></script>
+    <!--isotope packaged min js-->
+    <script th:src="@{/assets/js/isotope.pkgd.min.js}"></script>
+    <!--slinky menu js-->
+    <script th:src="@{/assets/js/slinky.menu.js}"></script>
+    <!-- Plugins JS -->
+    <script th:src="@{/assets/js/plugins.js}"></script>
+    <!-- Main JS -->
+    <script th:src="@{/assets/js/main.js}"></script>
+
+<script th:src="@{/assets/js/js.cookie.js}"></script>
+<script>
+
+    function removeFullItemFromBasket(id) {
+        var basket = Cookies.get('basket');
+        var changedBasket = JSON.parse("[" + basket + "]");
+        var countElement = changedBasket.indexOf(id);
+        changedBasket.splice(countElement);
+        Cookies.set('basket', changedBasket);
+        document.location.reload();
+    }
+
+    function removeAllItemsFromBasket() {
+        Cookies.remove('basket')
+        document.location.reload();
+    }
+
+    function plusCount(id, price) {
+        var basket = Cookies.get('basket');
+        var changedBasket = JSON.parse("[" + basket + "]");
+        var length = changedBasket.filter(x => x==id).length;
+        if (length >= 99)
+            return;
+        changedBasket.push(id);
+        Cookies.set('basket', changedBasket);
+        var fullPrice = price * (length+1) + ' ₽';
+        var resultLength = length + 1;
+        document.getElementById("total" + id).textContent = fullPrice;
+        document.getElementById("count" + id).value = resultLength;
+        setTotalPrice(changedBasket);
+    }
+
+    function minusCount(id, price) {
+        var basket = Cookies.get('basket');
+        var changedBasket = JSON.parse("[" + basket + "]");
+        var length = changedBasket.filter(x => x==id).length;
+        var countElement = changedBasket.indexOf(id);
+        changedBasket.splice(countElement, 1);
+        Cookies.set('basket', changedBasket);
+        var isExist = changedBasket.indexOf(id);
+        if (isExist === -1)
+            document.location.reload();
+        var fullPrice = price * (length-1) + ' ₽';
+        var resultLength = length - 1;
+        document.getElementById("total" + id).textContent = fullPrice;
+        document.getElementById("count" + id).value = resultLength;
+        setTotalPrice(changedBasket);
+    }
+
+    function setTotalPrice(changedBasket) {
+        var unique = new Set(changedBasket);
+        var qqd = unique.values();
+        var ids = 0;
+        for (let i = 0; i < unique.size; i++) {
+            ids += parseInt(document.getElementById("total" + qqd.next().value).firstChild.nodeValue);
+        }
+        document.getElementById("totalPrice").textContent = ids + ' ₽';
+    }
+
+    function setTotalPriceAtStart() {
+        var basket = Cookies.get('basket');
+        var changedBasket = JSON.parse("[" + basket + "]");
+        var unique = new Set(changedBasket);
+        var qqd = unique.values();
+        var ids = 0;
+        for (let i = 0; i < unique.size; i++) {
+            ids += parseInt(document.getElementById("total" + qqd.next().value).firstChild.nodeValue);
+        }
+        document.getElementById("totalPrice").textContent = ids + ' ₽';
+    }
+</script>
+</body>
+
+</html>

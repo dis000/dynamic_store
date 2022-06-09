@@ -1,5 +1,6 @@
 package com.shop.service;
 
+import com.shop.dto.BasketProductDto;
 import com.shop.dto.ProductDto;
 import com.shop.dto.ProductShortDto;
 import com.shop.dto.ValueProductFeatureDto;
@@ -15,10 +16,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
+import static java.util.Objects.isNull;
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -79,5 +84,32 @@ public class ProductServiceImpl implements ProductService {
             throw new ProductNotFoundException("Продукт со скидкой не найден");
 
         return products.stream().map(productMapper::toShortDto).collect(toList());
+    }
+
+
+    @Override
+    public List<BasketProductDto> getProductsForBasketByIds(String ids) {
+        if (isNull(ids) || ids.equals(""))
+            return null;
+
+        String[] string = ids.split(",");
+
+        List<Long> idsList = new ArrayList<>();
+        for (String s : string) {
+            idsList.add(Long.valueOf(s));
+        }
+
+        List<Product> productList = productRepository.findAllById(new HashSet<>(idsList));
+        if (productList.isEmpty())
+            return null;
+
+        Map<Long, Long> resultMap = new HashMap<>();
+        idsList.forEach(e -> resultMap.compute(e, (k, v) -> v == null ? 1L : v + 1L));
+
+        List<ProductShortDto> productShortDtoList = productList.stream().map(productMapper::toShortDto).collect(toList());
+
+        return productShortDtoList.stream()
+                .map(p -> productMapper.toBasketDto(p, resultMap.get(p.getId()).intValue()))
+                .collect(toList());
     }
 }

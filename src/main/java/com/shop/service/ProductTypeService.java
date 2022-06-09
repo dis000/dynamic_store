@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ProductTypeService {
 
-    List<CategoryDto> getCategories(Pageable page);
+    List<CategoryDto> getCategories();
 
     List<ProductShortDto> getShortByCategory(String category, Pageable page);
 

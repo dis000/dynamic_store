@@ -1,5 +1,6 @@
 package com.shop.mapper;
 
+import com.shop.dto.BasketProductDto;
 import com.shop.dto.ProductDto;
 import com.shop.dto.ProductShortDto;
 import com.shop.dto.ValueProductFeatureDto;
@@ -31,6 +32,11 @@ public interface ProductMapper {
     @Mapping(target = "pictures", expression = "java(rebuildProductPictures(product))")
     @Mapping(source = "productComment", target = "productComment")
     ProductDto toDto(Product product, List<ValueProductFeatureDto> features, List<ProductCommentDto> productComment);
+
+
+
+
+    BasketProductDto toBasketDto(ProductShortDto productShortDto, Integer howMany);
 
 
     default Integer calculatePercent(Product product) {
