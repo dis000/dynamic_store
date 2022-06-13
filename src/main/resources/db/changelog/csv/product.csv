@@ -1,0 +1,17 @@
+#,id,name,price,price_without_discount,amount,picture,rating,product_type_id
+1,9,Оперативная память Kingston FURY Beast Black 16 гб,8299,,0,,0,3
+2,10,Оперативная память AMD Radeon R7 Performance Series 8 ГБ,2299,,0,,0,3
+3,11,Оперативная память A-Data XPG Lancer RGB 32 ГБ,22999,,0,,0,3
+4,12,500 ГБ 2.5 SSD SATA накопитель Samsung 870 EVO,8999,,0,,0,4
+5,13,240 ГБ SSD 2.5 SATA накопитель Kingston A400,2699,,0,,0,4
+6,15,120 ГБ SSD M.2 накопитель ExeGate NextPro UV500TS120,1750,,0,,0,4
+7,8,Процессор Intel Core i5-11400F OEM,14899,15899,0,https://img.mvideo.ru/Pdb/30062444b.jpg,4,2
+8,6,Процессор Intel Core i5-10400F BOX,12799,,0,https://img.mvideo.ru/Pdb/30057993b.jpg,2,2
+9,7,Процессор AMD Ryzen 5 5600X OEM,20499,,0,https://main-cdn.sbermegamarket.ru/big1/hlr-system/149/791/355/811/218/39/100027796987b0.jpg,5,2
+10,3,Видеокарта GIGABYTE GeForce RTX 3050 GAMING OC,49399,,0,https://i.imgur.com/kBWgeuK.jpg,2,1
+11,4,Видеокарта GIGABYTE GeForce RTX 2060 D6 6G,42999,,0,https://ae04.alicdn.com/kf/S4b4ed796b3994d5dad95abe619d7ec9eG.jpg,2,1
+12,2,Видеокарта MSI GeForce RTX 3050 GAMING X,46799,52999,0,https://avatars.mds.yandex.net/get-mpic/5129282/img_id273744720833458297.png/600x600,5,1
+13,1,Видеокарта MSI GeForce RTX 3060 Ti GAMING Z TRIO,85299,89999,0,https://img.mvideo.ru/Pdb/30062478b.jpg,0,1
+14,5,Процессор AMD Ryzen 5 3600 OEM,16999,19999,0,https://main-cdn.sbermegamarket.ru/big1/hlr-system/384/221/048/528/179/100025033635b0.jpg,3,2
+15,14,1000 ГБ SSD M.2 накопитель Samsung 980,13299,14999,0,https://img.mvideo.ru/Pdb/1100028366737b.jpg,0,4
+16,16,480 ГБ 2.5 SSD SATA накопитель Kingston A400,4699,4999,0,https://intercom-nn.ru/upload/iblock/ed6/013362v76ye5h97yvfwp6ttgootlneeg/ssd_nakopitel_kingston_a400_sa400s37_480g_480gb_2_5_sata_iii.jpg,0,4
