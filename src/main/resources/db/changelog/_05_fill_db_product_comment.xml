@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1652953076529-5" author="suvorov">
+
+        <insert
+                schemaName="public"
+                tableName="product_comment">
+
+            <column name="author" value="Видеокарты"/>
+            <column name="picture" value="https://www.tradeinn.com/f/13743/137432066/msi-enthusiast-geforce-rtx-2060-ventus-xs-6gb-gddr6-graphic-card.jpg"/>
+        </insert>
+        <insert
+                schemaName="public"
+                tableName="product_type">
+
+            <column name="name_category" value="Процессоры"/>
+            <column name="picture" value="https://img.mvideo.ru/Pdb/1100027174248b.jpg"/>
+
+        </insert>
+        <insert
+                schemaName="public"
+                tableName="product_type">
+
+            <column name="name_category" value="Оперативная память"/>
+            <column name="picture" value="https://img.mvideo.ru/Pdb/30058350b.jpg"/>
+        </insert>
+        <insert
+                schemaName="public"
+                tableName="product_type">
+
+            <column name="name_category" value="ssd"/>
+            <column name="picture" value="https://avatars.mds.yandex.net/get-mpic/1589815/img_id2188759204821211548.jpeg/600x600"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>

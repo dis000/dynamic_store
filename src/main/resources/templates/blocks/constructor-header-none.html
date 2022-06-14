@@ -44,12 +44,8 @@
                             </div>
                             <div class="categories_menu_toggle">
                                 <ul>
-
-
                                     <li><a href="/model/categories">Все категории</a></li>
-                                    <li><a th:href="${'/model/category/' + category.getName()}" th:each="category : ${categories}" th:text="${category.getName}"></a></li>
-                                    <li class="hidden"><a href="shop-left-sidebar.html">New Sofas</a></li>
-                                    <li class="hidden"><a href="shop-left-sidebar.html">Sleight Sofas</a></li>
+                                    <li th:each="category : ${categories}"><a th:href="${'/model/category/' + category.getName()}" th:text="${category.getName}"></a></li>
                                 </ul>
                             </div>
                         </div>

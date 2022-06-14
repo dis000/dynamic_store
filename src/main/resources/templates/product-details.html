@@ -110,9 +110,7 @@
                                 </ul>
                             </div>
                             <div class="product_variant quantity">
-                                <label>quantity</label>
-                                <input min="1" max="100" value="1" type="number">
-                                <button class="button" type="submit">add to cart</button>
+                                <button class="button" type="submit" th:onclick="'javascript:addItemToBasket('+ ${productDetail.getId()} +');'">Добавить в корзину</button>
                             </div>
                             <div class="product_meta">
                                 <span>Категория: <a th:href="${'/model/category/' + productDetail.getCategory()}" th:text="${productDetail.getCategory()}">Clothing</a></span>
@@ -222,8 +220,7 @@
 
                                     </div>
                                     <div class="comment_title">
-                                        <h2>Add a review </h2>
-                                        <p>Your email address will not be published. Required fields are marked </p>
+                                        <h2>Добавить отзыв</h2>
                                     </div>
 
                                     <div class="product_review_form">
@@ -314,5 +311,8 @@
     <script th:src="@{/assets/js/plugins.js}"></script>
     <!-- Main JS -->
     <script th:src="@{/assets/js/main.js}"></script>
+    <script th:src="@{/assets/js/basket.js}"></script>
+    <script th:src="@{/assets/js/js.cookie.js}"></script>
+
 </body>
 </html>

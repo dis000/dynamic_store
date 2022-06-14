@@ -14,6 +14,10 @@
             <column name="price" value="85299"/>
             <column name="product_type_id"
                     valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарты')"/>
+            <column name="picture" value="https://img.mvideo.ru/Pdb/30062478b.jpg"/>
+            <column name="rating" value="5"/>
+            <column name="amount" value="15"/>
+            <column name="price_without_discount" value="91999"/>
         </insert>
 
         <insert
@@ -23,6 +27,10 @@
             <column name="price" value="46799"/>
             <column name="product_type_id"
                     valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарты')"/>
+            <column name="picture" value="https://avatars.mds.yandex.net/get-mpic/5129282/img_id273744720833458297.png/600x600"/>
+            <column name="rating" value="3"/>
+            <column name="amount" value="5"/>
+            <column name="price_without_discount" value="50999"/>
         </insert>
 
         <insert
@@ -32,6 +40,9 @@
             <column name="price" value="49399"/>
             <column name="product_type_id"
                     valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарты')"/>
+            <column name="picture" value="https://i.imgur.com/kBWgeuK.jpg"/>
+            <column name="rating" value="4"/>
+            <column name="amount" value="4"/>
         </insert>
 
         <insert
@@ -41,6 +52,10 @@
             <column name="price" value="42999"/>
             <column name="product_type_id"
                     valueComputed="(SELECT product_type.id from product_type where name_category='Видеокарты')"/>
+            <column name="picture" value="https://ae04.alicdn.com/kf/S4b4ed796b3994d5dad95abe619d7ec9eG.jpg"/>
+            <column name="rating" value="4"/>
+            <column name="amount" value="2"/>
+            <column name="price_without_discount" value="44999"/>
         </insert>
 
         <insert
@@ -50,6 +65,9 @@
             <column name="price" value="16999"/>
             <column name="product_type_id"
                     valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
+            <column name="picture" value="https://main-cdn.sbermegamarket.ru/big1/hlr-system/384/221/048/528/179/100025033635b0.jpg"/>
+            <column name="rating" value="5"/>
+            <column name="amount" value="25"/>
         </insert>
 
         <insert
@@ -59,6 +77,9 @@
             <column name="price" value="12799"/>
             <column name="product_type_id"
                     valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
+            <column name="picture" value="https://img.mvideo.ru/Pdb/30057993b.jpg"/>
+            <column name="rating" value="4"/>
+            <column name="amount" value="12"/>
         </insert>
 
         <insert
@@ -68,6 +89,9 @@
             <column name="price" value="20499"/>
             <column name="product_type_id"
                     valueComputed="(SELECT product_type.id from product_type where name_category='Процессоры')"/>
+            <column name="picture" value="https://main-cdn.sbermegamarket.ru/big1/hlr-system/149/791/355/811/218/39/100027796987b0.jpg"/>
+            <column name="rating" value="4"/>
+            <column name="amount" value="11"/>
         </insert>
 
         <insert

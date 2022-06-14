@@ -14,6 +14,7 @@ import org.mapstruct.Mapping;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.List;
+import java.util.OptionalDouble;
 
 import static com.shop.controllers.ProductController.ONE_HUNDRED;
 import static java.util.Objects.isNull;
@@ -31,10 +32,17 @@ public interface ProductMapper {
     @Mapping(source = "product.productType.nameCategory", target = "category")
     @Mapping(target = "pictures", expression = "java(rebuildProductPictures(product))")
     @Mapping(source = "productComment", target = "productComment")
+    @Mapping(target = "rating", expression = "java(calculateRating(productComment))")
     ProductDto toDto(Product product, List<ValueProductFeatureDto> features, List<ProductCommentDto> productComment);
 
 
+    default Double calculateRating(List<ProductCommentDto> productComment) {
+        OptionalDouble average = productComment.stream().mapToInt(ProductCommentDto::getRating).average();
+        if (average.isEmpty())
+            return 0.0;
 
+        return average.getAsDouble();
+    }
 
     BasketProductDto toBasketDto(ProductShortDto productShortDto, Integer howMany);
 
