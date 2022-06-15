@@ -1,12 +1,12 @@
 <article class="single_product">
     <figure>
         <div class="product_thumb">
-            <a class="primary_img" th:href="${'/model/category/' + category.getName()}"><img
+            <a class="primary_img" th:href="${'/category/' + category.getName()}"><img
                     th:src="${category.getPicture()}" alt=""></a>
         </div>
         <figcaption class="product_content">
             <h4
-                    class="product_name"><a th:href="${'/model/category/' + category.getName()}" th:text="${category.getName()}"></a>
+                    class="product_name"><a th:href="${'/category/' + category.getName()}" th:text="${category.getName()}"></a>
             </h4>
         </figcaption>
     </figure>

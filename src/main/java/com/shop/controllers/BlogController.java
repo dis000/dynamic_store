@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("model")
+
 public class BlogController {
 
     private final ProductTypeService productTypeService;
@@ -110,7 +110,7 @@ public class BlogController {
     public RedirectView createCommentInBlog(@ModelAttribute("review") BlogReviewCommentDto blogReviewCommentDto, @PathVariable Integer id) {
         blogCommentService.saveComment(blogReviewCommentDto, id);
 
-        return new RedirectView("/model/blog/" + id);
+        return new RedirectView("/blog/" + id);
     }
 
 

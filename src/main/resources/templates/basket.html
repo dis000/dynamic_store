@@ -71,11 +71,11 @@
                                                 class="fa fa-trash-o"></i></a>
                                         </td>
                                         <td class="product_thumb"><a
-                                                th:href="${'/model/product/' + basketProduct.getProductShortDto().getId()}"><img
+                                                th:href="${'/product/' + basketProduct.getProductShortDto().getId()}"><img
                                                 th:src="${basketProduct.getProductShortDto().getPicture()}" alt=""></a>
                                         </td>
                                         <td class="product_name"><a
-                                                th:href="${'/model/product/' + basketProduct.getProductShortDto().getId()}"
+                                                th:href="${'/product/' + basketProduct.getProductShortDto().getId()}"
                                                 th:text="${basketProduct.getProductShortDto().getName()}"></a></td>
                                         <td class="product-price"
                                             th:text="${basketProduct.getProductShortDto().getPrice()}+ ' ₽'"></td>

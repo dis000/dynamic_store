@@ -5,13 +5,13 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-3 col-4">
                         <div class="logo">
-                            <a href="/model"><img src="/assets/img/logo/logo.png" alt=""></a>
+                            <a href="/"><img src="/assets/img/logo/logo.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-6 col-6">
                         <div class="header_right_info">
                             <div class="search_container">
-                                <form th:action="@{/model/search}" method="get" class="d-flex">
+                                <form th:action="@{/search}" method="get" class="d-flex">
                                     <div class="hover_category">
                                     </div>
                                     <div class="search_box">
@@ -24,7 +24,7 @@
                                 <div class="header_account-list">
                                 </div>
                                 <div class="header_account-list  mini_cart_wrapper">
-                                    <a href="/model/basket"><i class="icon-shopping-bag"></i></a>
+                                    <a href="/basket"><i class="icon-shopping-bag"></i></a>
                                 </div>
                                 <div class="header_account-list">
                                 </div>
@@ -44,8 +44,8 @@
                             </div>
                             <div class="categories_menu_toggle">
                                 <ul>
-                                    <li><a href="/model/categories">Все категории</a></li>
-                                    <li th:each="category : ${categories}"><a th:href="${'/model/category/' + category.getName()}" th:text="${category.getName}"></a></li>
+                                    <li><a href="/categories">Все категории</a></li>
+                                    <li th:each="category : ${categories}"><a th:href="${'/category/' + category.getName()}" th:text="${category.getName}"></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -55,9 +55,9 @@
                         <div class="main_menu menu_position">
                             <nav>
                                 <ul>
-                                    <li><a href="/model"> Главная</a></li>
-                                    <li><a class="active" href="/model/blogs"> Блоги</a></li>
-                                    <li><a href="../contact.html"> О нас</a></li>
+                                    <li><a href="/"> Главная</a></li>
+                                    <li><a class="active" href="/blogs"> Блоги</a></li>
+                                    <li><a href="/about-us"> О нас</a></li>
                                 </ul>
                             </nav>
                         </div>

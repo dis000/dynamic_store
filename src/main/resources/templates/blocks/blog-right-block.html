@@ -3,7 +3,7 @@
         <div class="widget_title">
             <h3>Поиск в блогах</h3>
         </div>
-        <form th:action="@{/model/blogs/search/name}" method="get" class="d-flex">
+        <form th:action="@{/blogs/search/name}" method="get" class="d-flex">
             <input placeholder="Поиск..." type="search" name="s" aria-label="Search">
             <button type="submit">Поиск</button>
         </form>
@@ -14,10 +14,10 @@
         </div>
         <div class="post_wrapper" th:each="newBlog : ${newBlogs}">
             <div class="post_thumb">
-                <a th:href="${'/model/blog/' + newBlog.getId()}"><img th:src="${newBlog.getPicture()}" alt=""></a>
+                <a th:href="${'/blog/' + newBlog.getId()}"><img th:src="${newBlog.getPicture()}" alt=""></a>
             </div>
             <div class="post_info">
-                <h4><a th:href="${'/model/blog/' + newBlog.getId()}" th:text="${newBlog.getHeader()}"></a></h4>
+                <h4><a th:href="${'/blog/' + newBlog.getId()}" th:text="${newBlog.getHeader()}"></a></h4>
                 <span th:text="${newBlog.getDate()}"></span>
             </div>
         </div>
@@ -28,7 +28,7 @@
             <h3>Категории</h3>
         </div>
         <ul>
-            <li th:each="blogCategory : ${blogCategories}"><a th:href="${'/model/blogs/search/category?s=' + blogCategory.getNameCategory}" th:text="${blogCategory.getNameCategory()}"></a></li>
+            <li th:each="blogCategory : ${blogCategories}"><a th:href="${'/blogs/search/category?s=' + blogCategory.getNameCategory}" th:text="${blogCategory.getNameCategory()}"></a></li>
         </ul>
     </div>
 </div>

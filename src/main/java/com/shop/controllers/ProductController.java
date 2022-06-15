@@ -36,7 +36,7 @@ import java.util.List;
 import static java.util.Objects.isNull;
 
 @Controller
-@RequestMapping("model")
+
 public class ProductController {
 
     private final ProductTypeService productTypeService;
@@ -144,7 +144,7 @@ public class ProductController {
             @PathVariable Long id) {
         productCommentService.saveComment(productReviewCommentDto, id);
 
-        return new RedirectView("/model/product/" + id);
+        return new RedirectView("/product/" + id);
     }
 
 

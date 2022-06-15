@@ -39,15 +39,7 @@
 <body>
 
     <!--header area start-->
-
-    <!--offcanvas menu area start-->
-
-
-
-
     <header th:insert="/blocks/constructor-header-products :: header"> </header>
-    <!--offcanvas menu area end-->
-
     <!--header area end-->
 
 
@@ -191,10 +183,10 @@
                         <article class="single_blog">
                             <figure>
                                 <div class="blog_thumb">
-                                    <a th:href="${'/model/blog/' + blog.getId()}"><img th:src="${blog.getPicture()}" alt=""></a>
+                                    <a th:href="${'/blog/' + blog.getId()}"><img th:src="${blog.getPicture()}" alt=""></a>
                                 </div>
                                 <figcaption class="blog_content">
-                                    <h4 class="post_title"><a th:href="${'/model/blog/' + blog.getId()}" th:text="${blog.getHeader()}"></a></h4>
+                                    <h4 class="post_title"><a th:href="${'/blog/' + blog.getId()}" th:text="${blog.getHeader()}"></a></h4>
                                     <div class="articles_date">
                                         <p>Автор <span th:text="${blog.getAuthor() + ' / ' + blog.getDate()}"></span></p>
                                     </div>

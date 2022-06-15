@@ -113,7 +113,7 @@
                                 <button class="button" type="submit" th:onclick="'javascript:addItemToBasket('+ ${productDetail.getId()} +');'">Добавить в корзину</button>
                             </div>
                             <div class="product_meta">
-                                <span>Категория: <a th:href="${'/model/category/' + productDetail.getCategory()}" th:text="${productDetail.getCategory()}">Clothing</a></span>
+                                <span>Категория: <a th:href="${'/category/' + productDetail.getCategory()}" th:text="${productDetail.getCategory()}">Clothing</a></span>
                             </div>
                         </form>
                     </div>
@@ -224,7 +224,7 @@
                                     </div>
 
                                     <div class="product_review_form">
-                                        <form action="#" th:action="${'/model/product/' + productDetail.getId()}" th:object="${commentDto}"
+                                        <form action="#" th:action="${'/product/' + productDetail.getId()}" th:object="${commentDto}"
                                               method="post">
 
 

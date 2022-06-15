@@ -51,22 +51,22 @@
                     <article class="single_blog" th:each="blog : ${blogs}">
                         <figure>
                             <div class="blog_thumb">
-                                <a th:href="${'/model/blog/' + blog.getId()}"><img th:src="${blog.getPicture()}" alt=""></a>
+                                <a th:href="${'/blog/' + blog.getId()}"><img th:src="${blog.getPicture()}" alt=""></a>
                             </div>
                             <figcaption class="blog_content">
-                                <h4 class="post_title"><a th:href="${'/model/blog/' + blog.getId()}"
+                                <h4 class="post_title"><a th:href="${'/blog/' + blog.getId()}"
                                                           th:text="${blog.getHeader()}"><i
                                         class="fa fa-paper-plane"></i></a></h4>
                                 <div class="blog_meta">
                                     <p>Автор: <a href="#" th:text="${blog.getAuthor()}"></a> / Дата <a href="#"
                                                                                                        th:text="${blog.getDate()}"></a>
                                         / Категория: <a
-                                                th:href="${'/model/blogs/search/category?s=' + blog.getBlogCategory().getNameCategory()}"
+                                                th:href="${'/blogs/search/category?s=' + blog.getBlogCategory().getNameCategory()}"
                                                 th:text="${blog.getBlogCategory().getNameCategory()}"></a></p>
                                 </div>
                                 <p class="post_desc" th:text="${blog.getSubtitle()}"></p>
                                 <footer class="btn_more">
-                                    <a th:href="${'/model/blog/' + blog.getId()}"> Читать</a>
+                                    <a th:href="${'/blog/' + blog.getId()}"> Читать</a>
                                 </footer>
                             </figcaption>
                         </figure>

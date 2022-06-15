@@ -51,7 +51,7 @@
                                     <h3 class="post_title" th:text="${fullBlog.getHeader()}"></h3>
                                     <div class="blog_meta">
                                         <p>Автор : <a href="#" th:text="${fullBlog.getAuthor()}"></a> / Дата : <a href="#" th:text="${fullBlog.getDate()}"></a> / Категория
-                                            : <a th:href="${'/model/blogs/search/category?s=' + fullBlog.getBlogCategory().getNameCategory()}" th:text="${fullBlog.getBlogCategory().getNameCategory()}"></a></p>
+                                            : <a th:href="${'/blogs/search/category?s=' + fullBlog.getBlogCategory().getNameCategory()}" th:text="${fullBlog.getBlogCategory().getNameCategory()}"></a></p>
                                     </div>
                                 </div>
                                 <div class="blog_thumb">
@@ -92,11 +92,11 @@
                                     <article class="single_related">
                                         <figure>
                                             <div class="related_thumb">
-                                                <a class="primary_img" th:href="${'/model/blog/' + blogLimit.getId()}"><img
+                                                <a class="primary_img" th:href="${'/blog/' + blogLimit.getId()}"><img
                                                         th:src="${blogLimit.getPicture()}" alt=""></a>
                                             </div>
                                             <figcaption class="related_content">
-                                                <h4><a th:href="${'/model/blog/' + blogLimit.getId()}" th:text="${blogLimit.getHeader()}"></a></h4>
+                                                <h4><a th:href="${'/blog/' + blogLimit.getId()}" th:text="${blogLimit.getHeader()}"></a></h4>
                                                 <div class="blog_meta">
                                                     <span class="author">By : <a th:text="${blogLimit.getAuthor()}"></a> / </span>
                                                     <span class="meta_date" th:text="${blogLimit.getDate()}"></span>
@@ -128,7 +128,7 @@
                         <div class="comments_form">
                             <h3>Leave a Reply </h3>
                             <p>Your email address will not be published. Required fields are marked *</p>
-                            <form action="#" th:action="${'/model/blog/' + fullBlog.getId()}" th:object="${commentDto}"
+                            <form action="#" th:action="${'/blog/' + fullBlog.getId()}" th:object="${commentDto}"
                                   method="post">
                                 <div class="row">
                                     <div class="col-12">

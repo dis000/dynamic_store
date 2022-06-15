@@ -1,7 +1,7 @@
 <article class="single_product">
     <figure>
         <div class="product_thumb">
-            <a class="primary_img" th:href="${'/model/product/' + product.getId()}"><img
+            <a class="primary_img" th:href="${'/product/' + product.getId()}"><img
                     th:src="${product.getPicture()}" alt=""></a>
             <div class="label_product" th:if="${product.getDiscountPercent() != null}">
                 <span class="label_sale" th:text="'-' + ${product.getDiscountPercent()} + '%'"></span>
@@ -34,7 +34,7 @@
                 </ul>
             </div>
             <h4
-                    class="product_name"><a th:href="${'/model/product/' + product.getId()}" th:text="${product.getName()}"></a>
+                    class="product_name"><a th:href="${'/product/' + product.getId()}" th:text="${product.getName()}"></a>
             </h4>
             <div class="price_box">
                 <span class="current_price" th:text="${product.getPrice()}+ ' ₽'"></span>
