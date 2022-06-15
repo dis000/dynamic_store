@@ -1,5 +1,5 @@
 # dynamic_store
-![img_1.png](Untitled Diagram.jpg)
+![img_1.png](UntitledDiagram.jpg)
 
 cd ./src/main/resources
 <br />
