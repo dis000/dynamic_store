@@ -176,8 +176,12 @@
     function removeFullItemFromBasket(id) {
         var basket = Cookies.get('basket');
         var changedBasket = JSON.parse("[" + basket + "]");
-        var countElement = changedBasket.indexOf(id);
-        changedBasket.splice(countElement);
+        while (true) {
+            var countElement = changedBasket.indexOf(id);
+            if (countElement === -1)
+                break;
+            changedBasket.splice(countElement, 1);
+        }
         Cookies.set('basket', changedBasket);
         document.location.reload();
     }
