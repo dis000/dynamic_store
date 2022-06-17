@@ -44,6 +44,8 @@ public class Product {
 
     private Long amount;
 
+    private String description;
+
     private String picture;
 
     @Max(5)

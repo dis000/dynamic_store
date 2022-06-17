@@ -33,21 +33,11 @@
     <!--modernizr min js here-->
     <script th:src="@{/assets/js/vendor/modernizr-3.7.1.min.js}"></script>
 </head>
-
 <body>
 
-
 <!--header area start-->
-
-
-
-
-
 <header th:insert="/blocks/constructor-header-blog :: header"> </header>
-
-
 <!--header area end-->
-
 
     <!--blog area start-->
     <div class="blog_page_section blog_fullwidth mt-100">
@@ -108,13 +98,11 @@
                             <li th:if="${countPages > 1}"><a th:href="${#httpServletRequest.getRequestURL() + '?p=' + (countPages - 1)}" th:text="${countPages - 1}"></a></li>
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
     <!--blog pagination area end-->
-
 
 <footer th:insert="/blocks/footer :: footer"> </footer>
 
@@ -150,8 +138,5 @@
 <!-- Main JS -->
 <script th:src="@{/assets/js/main.js}"></script>
 
-
-
 </body>
-
 </html>

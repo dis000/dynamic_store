@@ -6,8 +6,6 @@ import com.shop.dto.ProductDto;
 import com.shop.dto.ProductShortDto;
 import com.shop.dto.ShortBlogDto;
 import com.shop.dto.comment.ProductReviewCommentDto;
-import com.shop.enums.OrderEnum;
-import com.shop.enums.SortByEnum;
 import com.shop.service.BlogService;
 import com.shop.service.ProductCommentService;
 import com.shop.service.ProductService;
@@ -22,18 +20,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-
-import static java.util.Objects.isNull;
 
 @Controller
 

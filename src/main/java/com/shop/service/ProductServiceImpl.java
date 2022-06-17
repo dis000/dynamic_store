@@ -59,7 +59,9 @@ public class ProductServiceImpl implements ProductService {
                 .collect(toList());
 
         List<ValueProductFeatureDto> productFeatures = product.getValueProductFeature().stream()
-                .map(valueProductFeatureMapper::toDto).collect(toList());
+                .map(valueProductFeatureMapper::toDto)
+                .sorted(Comparator.comparing(ValueProductFeatureDto::getFeatureName))
+                .collect(toList());
 
 
         return productMapper.toDto(product, productFeatures, sortedComments);
