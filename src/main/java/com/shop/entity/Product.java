@@ -4,6 +4,7 @@ package com.shop.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,6 +28,7 @@ import java.util.Set;
 @Setter
 @Getter
 @Table
+@ToString
 public class Product {
 
     @Id

@@ -106,7 +106,7 @@ public class BlogController {
     }
 
 
-    @PostMapping("/blog/{id}")
+    @PostMapping("blog/{id}")
     public RedirectView createCommentInBlog(@ModelAttribute("review") BlogReviewCommentDto blogReviewCommentDto, @PathVariable Integer id) {
         blogCommentService.saveComment(blogReviewCommentDto, id);
 
@@ -114,7 +114,7 @@ public class BlogController {
     }
 
 
-    @GetMapping("/blogs/search/name")
+    @GetMapping("blogs/search/name")
     public String searchBlogsByName(
             @ModelAttribute("review") BlogReviewCommentDto blogReviewCommentDto,
             @RequestParam(value = "s") String name,
@@ -145,7 +145,7 @@ public class BlogController {
     }
 
 
-    @GetMapping("/blogs/search/category")
+    @GetMapping("blogs/search/category")
     public String searchBlogsByName1(
             @ModelAttribute("review") BlogReviewCommentDto blogReviewCommentDto,
             @RequestParam(value = "s") String category,
