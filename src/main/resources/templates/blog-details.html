@@ -35,7 +35,7 @@
 </head>
 <body>
 <!--header area start-->
-<header th:insert="/blocks/constructor-header-blog :: header"> </header>
+<header th:insert="blocks/constructor-header-blog :: header"> </header>
 <!--header area end-->
 
     <!--blog body area start-->
@@ -63,23 +63,6 @@
                                     </div>
                                     <div class="entry_content">
                                         <div class="post_meta">
-                                            <span>Tags: </span>
-                                            <span><a href="#">, fashion</a></span>
-                                            <span><a href="#">, t-shirt</a></span>
-                                            <span><a href="#">, white</a></span>
-                                        </div>
-
-                                        <div class="social_sharing">
-                                            <p>share this post:</p>
-                                            <ul>
-                                                <li><a href="#" title="facebook"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#" title="pinterest"><i class="fa fa-pinterest"></i></a>
-                                                </li>
-                                                <li><a href="#" title="google+"><i class="fa fa-google-plus"></i></a>
-                                                </li>
-                                                <li><a href="#" title="linkedin"><i class="fa fa-linkedin"></i></a></li>
-                                            </ul>
                                         </div>
                                     </div>
                                 </figcaption>
@@ -126,8 +109,8 @@
                             </div>
                         </div>
                         <div class="comments_form">
-                            <h3>Leave a Reply </h3>
-                            <p>Your email address will not be published. Required fields are marked *</p>
+                            <h3>Оставьте свой комментарий</h3>
+                            <p></p>
                             <form action="#" th:action="${'/blog/' + fullBlog.getId()}" th:object="${commentDto}"
                                   method="post">
                                 <div class="row">
@@ -149,14 +132,14 @@
                     <!--blog grid area start-->
                 </div>
                 <div class="col-lg-3 col-md-12">
-                    <div th:insert="/blocks/blog-right-block :: div"> </div>
+                    <div th:insert="blocks/blog-right-block :: div"> </div>
                 </div>
             </div>
         </div>
     </div>
     <!--blog section area end-->
 
-<footer th:insert="/blocks/footer :: footer"> </footer>
+<footer th:insert="blocks/footer :: footer"> </footer>
 
 <!-- JS
 ============================================ -->
